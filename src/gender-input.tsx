@@ -2,9 +2,9 @@ import autobind from 'autobind-decorator';
 import React, { Component, ChangeEvent } from 'react';
 
 interface GenderInputProps {
-	name: string;
 	required?: boolean;
 	preferNotToSay?: boolean;
+	onUpdate?: (value: string) => undefined;
 }
 
 interface GenderInputState {
@@ -36,6 +36,10 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 	private handleChange(event: ChangeEvent<HTMLInputElement>) {
 		const value = event.currentTarget.value;
 		this.setState({ value });
+
+		if (this.props.onUpdate) {
+			this.props.onUpdate(value);
+		}
 	}
 
 	@autobind

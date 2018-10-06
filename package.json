@@ -10,7 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/ajgamble-milner/react-gender.git"
   },
-  "keywords": ["react", "gender", "form", "input"],
+  "keywords": [
+    "react",
+    "gender",
+    "form",
+    "input"
+  ],
   "author": "Aimee Gamble-Milner (https://github.com/ajgamble-milner)",
   "license": "MIT",
   "bugs": {
@@ -23,6 +28,7 @@
     "@types/mocha": "^5.2.5",
     "@types/react": "^16.4.14",
     "@types/react-dom": "^16.0.7",
+    "@types/sinon": "^5.0.4",
     "@types/webpack": "^4.4.14",
     "autobind-decorator": "^2.1.0",
     "chai": "^4.1.2",
@@ -36,6 +42,7 @@
     "prettier": "1.14.3",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
+    "sinon": "^6.3.5",
     "source-map-loader": "^0.2.4",
     "source-map-support": "^0.5.9",
     "ts-loader": "^5.2.1",

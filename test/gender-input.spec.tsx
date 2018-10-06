@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { GenderInput } from '../src/gender-input';
+import { SinonStub, stub } from 'sinon';
 
 const choices = ['Male', 'Female', 'Non-binary', 'Other'];
 
@@ -15,7 +16,7 @@ describe('Gender component', () => {
 
 	describe('with default options', () => {
 		before(() => {
-			wrapper = mount(<GenderInput name="title" />);
+			wrapper = mount(<GenderInput />);
 			labels = wrapper.find('label');
 			inputs = wrapper.find('input');
 		});
@@ -45,7 +46,7 @@ describe('Gender component', () => {
 
 	describe('with required=true', () => {
 		before(() => {
-			wrapper = mount(<GenderInput name="title" required={true} />);
+			wrapper = mount(<GenderInput required={true} />);
 			inputs = wrapper.find('input');
 		});
 
@@ -58,7 +59,7 @@ describe('Gender component', () => {
 
 	describe('with preferNotToSay=false', () => {
 		before(() => {
-			wrapper = mount(<GenderInput name="title" preferNotToSay={false} />);
+			wrapper = mount(<GenderInput preferNotToSay={false} />);
 			labels = wrapper.find('label');
 		});
 
@@ -72,8 +73,11 @@ describe('Gender component', () => {
 	});
 
 	describe('selecting the first option', () => {
+		let updateStub: SinonStub;
+
 		before(() => {
-			wrapper = mount(<GenderInput name="title" />);
+			updateStub = stub();
+			wrapper = mount(<GenderInput onUpdate={updateStub} />);
 			wrapper
 				.find('input')
 				.first()
@@ -90,11 +94,18 @@ describe('Gender component', () => {
 		it('should mark the input as checked', () => {
 			expect(inputs.first().prop('checked')).to.equal(true);
 		});
+
+		it('should call onUpdate() with the new value', () => {
+			expect(updateStub.callCount).to.equal(1);
+			expect(updateStub.firstCall.args[0]).to.equal(defaultValues[0]);
+		});
 	});
 
 	describe('selecting a second option', () => {
+		let updateStub: SinonStub;
 		before(() => {
-			wrapper = mount(<GenderInput name="title" />);
+			updateStub = stub();
+			wrapper = mount(<GenderInput onUpdate={updateStub} />);
 			wrapper.setState({ value: defaultValues[0] });
 			wrapper
 				.find('input')
@@ -115,6 +126,11 @@ describe('Gender component', () => {
 
 		it('should deselect the new option', () => {
 			expect(inputs.at(1).prop('checked')).to.equal(true);
+		});
+
+		it('should call onUpdate() with the new value', () => {
+			expect(updateStub.callCount).to.equal(1);
+			expect(updateStub.firstCall.args[0]).to.equal(defaultValues[1]);
 		});
 	});
 });
