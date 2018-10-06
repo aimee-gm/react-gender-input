@@ -2,6 +2,5 @@
 --require source-map-support/register
 --require jsdom-global/register
 --require ./test/mocha.setup.ts
---timeout 5000
 --recursive ./**/*.spec.tsx
 --watch-extensions tsx
