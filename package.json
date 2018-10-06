@@ -1,0 +1,52 @@
+{
+  "name": "react-gender",
+  "version": "0.1.0",
+  "description": "A simple react gender component for better gender data collection",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajgamble-milner/react-gender.git"
+  },
+  "keywords": ["react", "gender", "form", "input"],
+  "author": "Aimee Gamble-Milner (https://github.com/ajgamble-milner)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajgamble-milner/react-gender/issues"
+  },
+  "homepage": "https://github.com/ajgamble-milner/react-gender#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/mocha": "^5.2.5",
+    "@types/react": "^16.4.14",
+    "@types/react-dom": "^16.0.7",
+    "@types/webpack": "^4.4.14",
+    "autobind-decorator": "^2.1.0",
+    "chai": "^4.1.2",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jsdom": "^12.0.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^13.0.1",
+    "prettier": "1.14.3",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "source-map-loader": "^0.2.4",
+    "source-map-support": "^0.5.9",
+    "ts-loader": "^5.2.1",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.3",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
+  },
+  "peerDependencies": {
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1"
+  }
+}
