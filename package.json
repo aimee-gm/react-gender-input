@@ -4,7 +4,7 @@
   "description": "A simple react gender component for better gender data collection",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "tsc --noEmit && mocha"
   },
   "repository": {
     "type": "git",
