@@ -1,0 +1,13 @@
+section {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	div {
+		flex-grow: 1;
+
+		label {
+			display: block;
+		}
+	}
+}

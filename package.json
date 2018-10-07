@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "tsc --noEmit && nyc mocha",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "demo:dev": "parcel -p 8080 watch src/demo/index.html",
+    "demo:build": "parcel build src/demo/index.html"
   },
   "repository": {
     "type": "git",
@@ -41,9 +43,11 @@
     "jsdom-global": "^3.0.2",
     "mocha": "^5.2.0",
     "nyc": "^13.0.1",
+    "parcel-bundler": "^1.10.2",
     "prettier": "1.14.3",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
+    "sass": "^1.14.1",
     "sinon": "^6.3.5",
     "source-map-loader": "^0.2.4",
     "source-map-support": "^0.5.9",
