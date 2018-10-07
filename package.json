@@ -4,7 +4,8 @@
   "description": "A simple react gender component for better gender data collection",
   "main": "index.js",
   "scripts": {
-    "test": "tsc --noEmit && mocha"
+    "test": "tsc --noEmit && nyc mocha",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "@types/webpack": "^4.4.14",
     "autobind-decorator": "^2.1.0",
     "chai": "^4.1.2",
+    "coveralls": "^3.0.2",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
     "html-webpack-plugin": "^3.2.0",
