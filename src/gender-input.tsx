@@ -4,7 +4,7 @@ import React, { Component, ChangeEvent } from 'react';
 interface GenderInputProps {
 	required?: boolean;
 	preferNotToSay?: boolean;
-	onUpdate?: (value: string) => void;
+	onUpdate: (value: string) => void;
 	name?: string;
 }
 
@@ -43,9 +43,7 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 		const value = event.currentTarget.value;
 		this.setState({ value });
 
-		if (this.props.onUpdate) {
-			this.props.onUpdate(value);
-		}
+		this.props.onUpdate(value);
 	}
 
 	@autobind
