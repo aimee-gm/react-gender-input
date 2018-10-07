@@ -35,6 +35,12 @@ describe('Gender component', () => {
 			});
 		});
 
+		it('should have name of "gender-input', () => {
+			inputs.forEach((option) => {
+				expect(option.prop('name')).to.equal('gender-input');
+			});
+		});
+
 		it('should have the correct values', () => {
 			expect(inputs.map((option) => option.prop('value'))).to.eql(defaultValues);
 		});
@@ -69,6 +75,19 @@ describe('Gender component', () => {
 
 		it('should only have the four simple choices', () => {
 			expect(labels.map((option) => option.text())).to.eql(choices);
+		});
+	});
+
+	describe('with custom name defined (name="custom-name")', () => {
+		before(() => {
+			wrapper = mount(<GenderInput name="custom-name" />);
+			inputs = wrapper.find('input');
+		});
+
+		it('should have name of "gender-input', () => {
+			inputs.forEach((option) => {
+				expect(option.prop('name')).to.equal('custom-name');
+			});
 		});
 	});
 
