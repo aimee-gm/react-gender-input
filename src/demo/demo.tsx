@@ -5,8 +5,8 @@ import './demo.scss';
 import { GenderInput } from '../gender-input';
 
 interface DemoState {
-	[key: string]: string | boolean | null;
-	gender: string | null;
+	[key: string]: string | boolean | null | undefined;
+	gender: string | null | undefined;
 	preferNotToSay: boolean;
 	required: boolean;
 }
@@ -15,7 +15,7 @@ class DemoApp extends React.Component<{}, DemoState> {
 	constructor(props: {}) {
 		super(props);
 		this.state = {
-			gender: null,
+			gender: undefined,
 			required: false,
 			preferNotToSay: true,
 		};
@@ -30,7 +30,7 @@ class DemoApp extends React.Component<{}, DemoState> {
 			required: this.state.required,
 			preferNotToSay: this.state.preferNotToSay,
 			name: 'gender-input',
-			onUpdate: (gender: string) => {
+			onUpdate: (gender: string | null) => {
 				this.setState({
 					gender,
 				});
