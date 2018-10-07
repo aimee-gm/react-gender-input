@@ -7,11 +7,12 @@ _A better gender form option implemeted as a react component_
 ## Usage
 
 ```html
-<GenderInput onUpdate={(val) => {}} />
+<GenderInput name='my-gender-field-name' onUpdate={(val) => {}} />
 ```
 
 ## Options
 
+- `name`: type: `string`, default: `gender-input`. Form name property used for the input
 - `required`: type `boolean`, default: `false`. Toggles `required="required" on form inputs
 - `preferNotToSay`: type `boolean`, default: `true`. Toggles an additional "Prefer not to say option"
 - `onUpdate`: type `function`. Method to call when the selected value changes. Called with one argument: the new value.
