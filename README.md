@@ -3,6 +3,7 @@
 _A better gender form option implemeted as a react component_
 
 [![Build Status](https://travis-ci.org/ajgamble-milner/react-gender.svg?branch=master)](https://travis-ci.org/ajgamble-milner/react-gender)
+[![License](https://img.shields.io/github/license/ajgamble-milner/react-gender.svg)](/LICENSE)
 
 ## Usage
 
