@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import './demo.scss';
 import { GenderInput } from '../gender-input';
-import autobind from 'autobind-decorator';
 
 interface DemoState {
 	[key: string]: string | boolean | null;
@@ -22,21 +21,20 @@ class DemoApp extends React.Component<{}, DemoState> {
 		};
 	}
 
-	@autobind
-	onUpdate(gender: string) {
-		this.setState({ gender });
-	}
-
 	private get demoState() {
 		return { gender: this.state.gender };
 	}
 
 	private get genderProps() {
 		return {
-			onUpdate: this.onUpdate,
 			required: this.state.required,
 			preferNotToSay: this.state.preferNotToSay,
 			name: 'gender-input',
+			onUpdate: (gender: string) => {
+				this.setState({
+					gender,
+				});
+			},
 		};
 	}
 
@@ -55,9 +53,9 @@ class DemoApp extends React.Component<{}, DemoState> {
 				<div>
 					<GenderInput
 						name={this.genderProps.name}
-						onUpdate={this.onUpdate}
-						required={this.state.required}
-						preferNotToSay={this.state.preferNotToSay}
+						onUpdate={this.genderProps.onUpdate}
+						required={this.genderProps.required}
+						preferNotToSay={this.genderProps.preferNotToSay}
 					/>
 				</div>
 			</section>
