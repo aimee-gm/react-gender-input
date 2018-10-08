@@ -46,6 +46,18 @@ class DemoApp extends React.Component<{}, DemoState> {
 		return void 0;
 	}
 
+	private get genderInputMarkup() {
+		const markup = `
+<GenderInput
+	name='${this.genderProps.name}'
+	onUpdate={(gender) => this.setState({ gender })}
+	required={${this.genderProps.required.toString()}}
+	preferNotToSay={${this.genderProps.preferNotToSay.toString()}}
+/>
+		`;
+		return <pre>{markup}</pre>;
+	}
+
 	private get genderInput() {
 		return (
 			<section>
@@ -84,7 +96,7 @@ class DemoApp extends React.Component<{}, DemoState> {
 		return (
 			<div>
 				{this.genderInput}
-				{this.json(this.genderProps)}
+				{this.genderInputMarkup}
 				{this.json(this.demoState)}
 				<div>
 					required:
