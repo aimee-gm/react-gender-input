@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { monokai } from 'react-syntax-highlighter/styles/hljs';
+// TODO: Proper typings for prism
+//@ts-ignore
+import SyntaxHighlighter from 'react-syntax-highlighter/prism';
+import { okaidia } from 'react-syntax-highlighter/styles/prism';
 
 import './demo.scss';
 import { GenderInput } from '../gender-input';
@@ -57,7 +59,7 @@ class DemoApp extends React.Component<{}, DemoState> {
 	preferNotToSay={${this.genderProps.preferNotToSay.toString()}}
 />
 		`;
-		return <SyntaxHighlighter style={monokai}>{markup}</SyntaxHighlighter>;
+		return this.code(markup.trim(), 'jsx');
 	}
 
 	private get genderInput() {
@@ -90,8 +92,16 @@ class DemoApp extends React.Component<{}, DemoState> {
 		);
 	}
 
+	private code(code: string, language: string) {
+		return (
+			<SyntaxHighlighter style={okaidia} language={language}>
+				{code}
+			</SyntaxHighlighter>
+		);
+	}
+
 	private json(obj: Record<string, any>) {
-		return <pre>{JSON.stringify(obj, null, 4)}</pre>;
+		return this.code(JSON.stringify(obj, null, 4), 'json');
 	}
 
 	render() {
