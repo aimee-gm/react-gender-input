@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { monokai } from 'react-syntax-highlighter/styles/hljs';
 
 import './demo.scss';
 import { GenderInput } from '../gender-input';
@@ -55,7 +57,7 @@ class DemoApp extends React.Component<{}, DemoState> {
 	preferNotToSay={${this.genderProps.preferNotToSay.toString()}}
 />
 		`;
-		return <pre>{markup}</pre>;
+		return <SyntaxHighlighter style={monokai}>{markup}</SyntaxHighlighter>;
 	}
 
 	private get genderInput() {
