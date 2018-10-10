@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// TODO: Proper typings for prism
-//@ts-ignore
-import SyntaxHighlighter from 'react-syntax-highlighter/prism';
+import SyntaxHighlighter, { registerLanguage } from 'react-syntax-highlighter/prism-light';
+import jsx from 'react-syntax-highlighter/languages/prism/jsx';
 import { okaidia } from 'react-syntax-highlighter/styles/prism';
 
 import './demo.scss';
 import { GenderInput } from '../gender-input';
+
+registerLanguage('jsx', jsx);
 
 interface DemoState {
 	[key: string]: string | boolean | null | undefined;
