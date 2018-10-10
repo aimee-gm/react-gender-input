@@ -4,3 +4,5 @@ coverage
 .vscode
 .cache
 dist
+dist
+demo

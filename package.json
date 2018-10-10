@@ -7,7 +7,7 @@
 		"test": "tsc --noEmit && nyc mocha",
 		"coveralls": "nyc report --reporter=text-lcov | coveralls",
 		"demo:dev": "parcel -p 8080 watch src/demo/index.html",
-		"demo:build": "parcel build src/demo/index.html"
+		"demo:build": "parcel build src/demo/index.html --public-url /react-gender/ --out-dir demo"
 	},
 	"repository": {
 		"type": "git",

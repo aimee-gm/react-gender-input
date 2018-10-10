@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+//@ts-ignore
 import SyntaxHighlighter, { registerLanguage } from 'react-syntax-highlighter/prism-light';
+//@ts-ignore
 import jsx from 'react-syntax-highlighter/languages/prism/jsx';
 import { okaidia } from 'react-syntax-highlighter/styles/prism';
 
