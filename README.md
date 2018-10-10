@@ -6,6 +6,10 @@ _A better gender form option implemeted as a react component_
 [![Coverage Status](https://coveralls.io/repos/github/ajgamble-milner/react-gender/badge.svg?branch=master)](https://coveralls.io/github/ajgamble-milner/react-gender?branch=master)
 [![License](https://img.shields.io/github/license/ajgamble-milner/react-gender.svg)](/LICENSE)
 
+## Demo
+
+View the component in action in [our interavtive demo](https://ajgamble-milner.github.io/react-gender/)
+
 ## Usage
 
 ```html
