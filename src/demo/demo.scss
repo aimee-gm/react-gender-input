@@ -1,10 +1,25 @@
+@import '../../node_modules/source-sans-pro/source-sans-pro.css';
+
+$codeFont: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
 section {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 
-	div {
+	> div {
 		flex-grow: 1;
+		color: rgb(12, 45, 34);
+		background: rgb(248, 248, 248);
+		line-height: 1.5;
+		padding: 1em;
+		margin: 0.5em 0px;
+		border-radius: 0.3em;
+		box-shadow: 0 0 4px rgba(12, 45, 34, 0.25);
 
 		label {
 			display: block;
@@ -20,10 +35,26 @@ label span {
 button {
 	border: none;
 	padding: 0.25em;
-	font-family: 'Courier New', Courier, monospace;
+	font-family: $codeFont;
 
 	&.selected {
 		background: blue;
 		color: #fff;
 	}
+}
+
+#gender-label {
+	margin-right: 1em;
+}
+
+span.param {
+	font-family: $codeFont;
+	display: inline-block;
+	background: #eee;
+	padding: 0.25em 0.4em;
+}
+
+code,
+span.param {
+	font-size: 0.8em;
 }

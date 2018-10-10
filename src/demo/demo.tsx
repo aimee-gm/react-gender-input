@@ -108,17 +108,20 @@ class DemoApp extends React.Component<{}, DemoState> {
 	render() {
 		return (
 			<div>
+				<h1>react-gender-input</h1>
+				<h2>Demo</h2>
 				{this.genderInput}
+				<h2>Markup</h2>
 				{this.genderInputMarkup}
+				<h2>Output</h2>
 				{this.json(this.demoState)}
+				<h2>Parameters</h2>
 				<div>
-					required:
-					{this.button('required', true)}
+					<span className="param">required</span>:{this.button('required', true)}
 					{this.button('required', false)}
 				</div>
 				<div>
-					preferNotToSay:
-					{this.button('preferNotToSay', true)}
+					<span className="param">preferNotToSay</span>:{this.button('preferNotToSay', true)}
 					{this.button('preferNotToSay', false)}
 				</div>
 			</div>
