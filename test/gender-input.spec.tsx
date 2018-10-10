@@ -7,7 +7,7 @@ import { SinonStub, stub } from 'sinon';
 const choices = ['Male', 'Female', 'Non-binary', 'Other'];
 
 const defaultText = [...choices, 'Prefer not to say'];
-const defaultValues = defaultText.map((val) => val.toLowerCase());
+const defaultValues = [...choices.map((val) => val.toLowerCase()), undefined];
 
 describe('Gender component', () => {
 	let wrapper: ReactWrapper;
@@ -69,11 +69,11 @@ describe('Gender component', () => {
 			labels = wrapper.find('label');
 		});
 
-		it('should only have the four choices', () => {
+		it('should have four choices', () => {
 			expect(labels).to.have.lengthOf(4);
 		});
 
-		it('should only have the four simple choices', () => {
+		it('have the correct labels', () => {
 			expect(labels.map((option) => option.text())).to.eql(choices);
 		});
 	});
@@ -104,7 +104,7 @@ describe('Gender component', () => {
 			inputs = wrapper.find('input');
 		});
 
-		after(() => wrapper.setState({ value: null }));
+		after(() => wrapper.setState({ value: undefined }));
 
 		it('should update the state value', () => {
 			expect(wrapper.state('value')).to.eql(defaultValues[0]);
@@ -133,7 +133,7 @@ describe('Gender component', () => {
 			inputs = wrapper.find('input');
 		});
 
-		after(() => wrapper.setState({ value: null }));
+		after(() => wrapper.setState({ value: undefined }));
 
 		it('should update the state value', () => {
 			expect(wrapper.state('value')).to.eql(defaultValues[1]);
@@ -150,6 +150,35 @@ describe('Gender component', () => {
 		it('should call onUpdate() with the new value', () => {
 			expect(updateStub.callCount).to.equal(1);
 			expect(updateStub.firstCall.args[0]).to.equal(defaultValues[1]);
+		});
+	});
+
+	describe('selecting prefer not to say', () => {
+		let updateStub: SinonStub;
+
+		before(() => {
+			updateStub = stub();
+			wrapper = mount(<GenderInput onUpdate={updateStub} />);
+			wrapper
+				.find('input')
+				.last()
+				.simulate('change');
+			inputs = wrapper.find('input');
+		});
+
+		after(() => wrapper.setState({ value: undefined }));
+
+		it('should update the state value to null', () => {
+			expect(wrapper.state('value')).to.eql(null);
+		});
+
+		it('should mark the input as checked', () => {
+			expect(inputs.last().prop('checked')).to.equal(true);
+		});
+
+		it('should call onUpdate() with the new value', () => {
+			expect(updateStub.callCount).to.equal(1);
+			expect(updateStub.firstCall.args[0]).to.equal(null);
 		});
 	});
 });
