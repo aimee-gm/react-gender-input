@@ -7,7 +7,7 @@ import jsx from 'react-syntax-highlighter/languages/prism/jsx';
 import { okaidia } from 'react-syntax-highlighter/styles/prism';
 
 import './demo.scss';
-import { GenderInput } from '../gender-input';
+import { GenderInput } from '../../gender-input';
 
 registerLanguage('jsx', jsx);
 
