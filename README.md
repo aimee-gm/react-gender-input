@@ -8,7 +8,7 @@ _A better gender form option implemeted as a react component_
 
 ## Demo
 
-View the component in action in [our interavtive demo](https://ajgamble-milner.github.io/react-gender/)
+View the component in action in [our interactive demo](https://ajgamble-milner.github.io/react-gender/)
 
 ## Usage
 
