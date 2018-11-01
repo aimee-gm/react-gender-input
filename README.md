@@ -1,14 +1,14 @@
-# React-gender
+# react-gender-input
 
 _A better gender form option implemeted as a react component_
 
-[![Build Status](https://travis-ci.org/ajgamble-milner/react-gender.svg?branch=master)](https://travis-ci.org/ajgamble-milner/react-gender)
-[![Coverage Status](https://coveralls.io/repos/github/ajgamble-milner/react-gender/badge.svg?branch=master)](https://coveralls.io/github/ajgamble-milner/react-gender?branch=master)
-[![License](https://img.shields.io/github/license/ajgamble-milner/react-gender.svg)](/LICENSE)
+[![Build Status](https://travis-ci.org/ajgamble-milner/react-gender-input.svg?branch=master)](https://travis-ci.org/ajgamble-milner/react-gender-input)
+[![Coverage Status](https://coveralls.io/repos/github/ajgamble-milner/react-gender-input/badge.svg?branch=master)](https://coveralls.io/github/ajgamble-milner/react-gender-input?branch=master)
+[![License](https://img.shields.io/github/license/ajgamble-milner/react-gender-input.svg)](/LICENSE)
 
 ## Demo
 
-View the component in action in [our interactive demo](https://ajgamble-milner.github.io/react-gender/)
+View the component in action in [our interactive demo](https://ajgamble-milner.github.io/react-gender-input/)
 
 ## Usage
 
