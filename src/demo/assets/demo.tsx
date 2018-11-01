@@ -39,17 +39,6 @@ class DemoApp extends React.Component<{}, DemoState> {
 		};
 	}
 
-	private get genderInputMarkup() {
-		return `
-<GenderInput
-	name='${this.genderProps.name}'
-	onUpdate={(gender) => this.setState({ gender })}
-	required={${this.genderProps.required.toString()}}
-	preferNotToSay={${this.genderProps.preferNotToSay.toString()}}
-/>
-		`.trim();
-	}
-
 	private button(name: string, value: boolean) {
 		return (
 			<button
@@ -71,7 +60,7 @@ class DemoApp extends React.Component<{}, DemoState> {
 				<h2>Demo</h2>
 				<GenderInputDemo genderProps={this.genderProps} />
 				<h2>Markup</h2>
-				<CodeBlock language="jsx">{this.genderInputMarkup}</CodeBlock>
+				<CodeBlock language="jsx">{GenderInputDemo.markup(this.genderProps)}</CodeBlock>
 				<h2>Output</h2>
 				<CodeBlock language="json">{JSON.stringify(this.demoState, null, 4)}</CodeBlock>
 				<h2>Parameters</h2>

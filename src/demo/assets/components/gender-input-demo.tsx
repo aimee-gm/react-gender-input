@@ -5,6 +5,8 @@ interface GenderInputDemoProps {
 	genderProps: GenderInputProps;
 }
 
+type MarkupProps = Required<Pick<GenderInputProps, 'name' | 'required' | 'preferNotToSay'>>;
+
 export class GenderInputDemo extends React.Component<GenderInputDemoProps> {
 	private get optionalText() {
 		if (!this.props.genderProps.required) {
@@ -28,5 +30,14 @@ export class GenderInputDemo extends React.Component<GenderInputDemoProps> {
 				</div>
 			</section>
 		);
+	}
+
+	static markup(props: MarkupProps) {
+		return `<GenderInput
+	name='${props.name}'
+	onUpdate={(gender) => this.setState({ gender })}
+	required={${props.required.toString()}}
+	preferNotToSay={${props.preferNotToSay.toString()}}
+/>`.trim();
 	}
 }
