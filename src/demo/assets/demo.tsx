@@ -1,13 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SyntaxHighlighter, { registerLanguage } from 'react-syntax-highlighter/prism-light';
-import jsx from 'react-syntax-highlighter/languages/prism/jsx';
-import { okaidia } from 'react-syntax-highlighter/styles/prism';
 
 import './demo.scss';
 import { GenderInput } from '../../gender-input';
-
-registerLanguage('jsx', jsx);
+import { CodeBlock } from './components/code-block';
 
 interface DemoState {
 	[key: string]: string | boolean | null | undefined;
@@ -60,7 +56,8 @@ class DemoApp extends React.Component<{}, DemoState> {
 	preferNotToSay={${this.genderProps.preferNotToSay.toString()}}
 />
 		`;
-		return this.code(markup.trim(), 'jsx');
+
+		return <CodeBlock language="jsx">{markup.trim()}</CodeBlock>;
 	}
 
 	private get genderInput() {
@@ -93,16 +90,8 @@ class DemoApp extends React.Component<{}, DemoState> {
 		);
 	}
 
-	private code(code: string, language: string) {
-		return (
-			<SyntaxHighlighter style={okaidia} language={language}>
-				{code}
-			</SyntaxHighlighter>
-		);
-	}
-
 	private json(obj: Record<string, any>) {
-		return this.code(JSON.stringify(obj, null, 4), 'json');
+		return <CodeBlock language="json">{JSON.stringify(obj, null, 4)}</CodeBlock>;
 	}
 
 	render() {
