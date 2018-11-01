@@ -8,6 +8,7 @@ jobs:
       node_js: 'lts/*'
     - name: 'node:latest'
       script:
+        - npm run test:build
         - npm test
         - npm run demo:build
       after_success:

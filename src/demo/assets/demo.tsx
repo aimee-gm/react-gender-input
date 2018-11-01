@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './demo.scss';
-import { GenderInput } from '../../gender-input';
 import { CodeBlock } from './components/code-block';
+import { GenderInputDemo } from './components/gender-input-demo';
 
 interface DemoState {
 	[key: string]: string | boolean | null | undefined;
@@ -39,41 +39,15 @@ class DemoApp extends React.Component<{}, DemoState> {
 		};
 	}
 
-	private get optionalText() {
-		if (!this.state.required) {
-			return <span>Optional</span>;
-		}
-
-		return void 0;
-	}
-
 	private get genderInputMarkup() {
-		const markup = `
+		return `
 <GenderInput
 	name='${this.genderProps.name}'
 	onUpdate={(gender) => this.setState({ gender })}
 	required={${this.genderProps.required.toString()}}
 	preferNotToSay={${this.genderProps.preferNotToSay.toString()}}
 />
-		`;
-
-		return <CodeBlock language="jsx">{markup.trim()}</CodeBlock>;
-	}
-
-	private get genderInput() {
-		return (
-			<section>
-				<label id="gender-label">Gender: {this.optionalText}</label>
-				<div>
-					<GenderInput
-						name={this.genderProps.name}
-						onUpdate={this.genderProps.onUpdate}
-						required={this.genderProps.required}
-						preferNotToSay={this.genderProps.preferNotToSay}
-					/>
-				</div>
-			</section>
-		);
+		`.trim();
 	}
 
 	private button(name: string, value: boolean) {
@@ -90,20 +64,16 @@ class DemoApp extends React.Component<{}, DemoState> {
 		);
 	}
 
-	private json(obj: Record<string, any>) {
-		return <CodeBlock language="json">{JSON.stringify(obj, null, 4)}</CodeBlock>;
-	}
-
 	render() {
 		return (
 			<div>
 				<h1>react-gender-input</h1>
 				<h2>Demo</h2>
-				{this.genderInput}
+				<GenderInputDemo genderProps={this.genderProps} />
 				<h2>Markup</h2>
-				{this.genderInputMarkup}
+				<CodeBlock language="jsx">{this.genderInputMarkup}</CodeBlock>
 				<h2>Output</h2>
-				{this.json(this.demoState)}
+				<CodeBlock language="json">{JSON.stringify(this.demoState, null, 4)}</CodeBlock>
 				<h2>Parameters</h2>
 				<div>
 					<span className="param">required</span>:{this.button('required', true)}
