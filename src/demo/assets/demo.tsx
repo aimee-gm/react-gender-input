@@ -62,7 +62,7 @@ class DemoApp extends React.Component<{}, DemoState> {
 				<h2>Markup</h2>
 				<CodeBlock language="jsx">{GenderInputDemo.markup(this.genderProps)}</CodeBlock>
 				<h2>Output</h2>
-				<CodeBlock language="json">{JSON.stringify(this.demoState, null, 4)}</CodeBlock>
+				<CodeBlock language="json" code={this.demoState} />
 				<h2>Parameters</h2>
 				<div>
 					<span className="param">required</span>:{this.button('required', true)}

@@ -5,3 +5,4 @@ coverage
 .cache
 dist
 demo/*
+.DS_Store

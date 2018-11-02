@@ -14,28 +14,44 @@ describe('Demo: CodeBlock component', () => {
 	let testSpan: ReactWrapper;
 
 	describe('with language=json', () => {
-		before(() => {
-			wrapper = mount(<CodeBlock language="json">{json}</CodeBlock>);
-			testSpan = wrapper
-				.find('span')
-				.findWhere((el) => el.text() === '"key"')
-				.first();
+		describe('with a child string', () => {
+			before(() => {
+				wrapper = mount(<CodeBlock language="json">{json}</CodeBlock>);
+				testSpan = wrapper
+					.find('span')
+					.findWhere((el) => el.text() === '"key"')
+					.first();
+			});
+
+			it('should contain a <code> block', () => {
+				expect(wrapper.find('code').exists()).to.equal(true);
+			});
+
+			it('should display the code', () => {
+				expect(wrapper.text()).to.equal(json);
+			});
+
+			it('should have a <span> tag containing the text "key"', () => {
+				expect(testSpan.exists()).to.equal(true);
+			});
+
+			it('should colour the code', () => {
+				expect(testSpan.prop('style')).to.eql({ color: '#f92672' });
+			});
 		});
 
-		it('should contain a <code> block', () => {
-			expect(wrapper.find('code').exists()).to.equal(true);
-		});
+		describe('with a code property', () => {
+			before(() => {
+				wrapper = mount(<CodeBlock language="json" code={{ key: 'value' }} />);
+				testSpan = wrapper
+					.find('span')
+					.findWhere((el) => el.text() === '"key"')
+					.first();
+			});
 
-		it('should display the code', () => {
-			expect(wrapper.text()).to.equal(json);
-		});
-
-		it('should have a <span> tag containing the text "key"', () => {
-			expect(testSpan.exists()).to.equal(true);
-		});
-
-		it('should colour the code', () => {
-			expect(testSpan.prop('style')).to.eql({ color: '#f92672' });
+			it('should stringify and format the code', () => {
+				expect(wrapper.text()).to.equal(json);
+			});
 		});
 	});
 

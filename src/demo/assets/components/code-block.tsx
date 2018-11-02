@@ -10,13 +10,18 @@ registerLanguage('json', json);
 
 interface CodeBlockProps {
 	language: 'jsx' | 'json';
+	code?: any;
 }
 
 export class CodeBlock extends React.Component<CodeBlockProps> {
+	private get code() {
+		return this.props.children || JSON.stringify(this.props.code, null, '\t');
+	}
+
 	render() {
 		return (
 			<SyntaxHighlighter style={okaidia} language={this.props.language}>
-				{this.props.children}
+				{this.code}
 			</SyntaxHighlighter>
 		);
 	}
