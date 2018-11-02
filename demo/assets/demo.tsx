@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import autobind from 'autobind-decorator';
 
 import './demo.scss';
+
 import { CodeBlock } from './components/code-block';
 import { GenderInputDemo } from './components/gender-input-demo';
+import { PropToggle } from './components/prop-toggle';
 
 interface DemoState {
 	[key: string]: string | boolean | null | undefined;
@@ -39,18 +42,9 @@ class DemoApp extends React.Component<{}, DemoState> {
 		};
 	}
 
-	private button(name: string, value: boolean) {
-		return (
-			<button
-				className={this.state[name] === value ? 'selected' : ''}
-				onClick={() =>
-					this.setState({
-						[name]: value,
-					})
-				}>
-				{value.toString()}
-			</button>
-		);
+	@autobind
+	private setParam(name: string, val: boolean) {
+		this.setState({ [name]: val });
 	}
 
 	render() {
@@ -64,14 +58,8 @@ class DemoApp extends React.Component<{}, DemoState> {
 				<h2>Output</h2>
 				<CodeBlock language="json" code={this.demoState} />
 				<h2>Parameters</h2>
-				<div>
-					<span className="param">required</span>:{this.button('required', true)}
-					{this.button('required', false)}
-				</div>
-				<div>
-					<span className="param">preferNotToSay</span>:{this.button('preferNotToSay', true)}
-					{this.button('preferNotToSay', false)}
-				</div>
+				<PropToggle name="required" current={this.state.required} onClick={this.setParam} />
+				<PropToggle name="preferNotToSay" current={this.state.preferNotToSay} onClick={this.setParam} />
 			</div>
 		);
 	}

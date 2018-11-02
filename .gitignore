@@ -4,5 +4,4 @@ coverage
 .vscode
 .cache
 dist
-demo/*
 .DS_Store

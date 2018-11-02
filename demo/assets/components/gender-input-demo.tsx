@@ -1,11 +1,11 @@
 import React from 'react';
-import { GenderInputProps, GenderInput } from '../../../gender-input';
+import { GenderInputProps, GenderInput } from '../../../lib/gender-input';
 
 interface GenderInputDemoProps {
 	genderProps: GenderInputProps;
 }
 
-type MarkupProps = Required<Pick<GenderInputProps, 'name' | 'required' | 'preferNotToSay'>>;
+type MarkupProps = Required<GenderInputProps>;
 
 export class GenderInputDemo extends React.Component<GenderInputDemoProps> {
 	private get optionalText() {

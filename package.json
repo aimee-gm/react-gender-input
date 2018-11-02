@@ -4,11 +4,14 @@
 	"description": "A simple react gender component for better gender data collection",
 	"main": "index.js",
 	"scripts": {
-		"test:build": "tsc --noEmit",
-		"test": "nyc mocha",
+		"build": "tsc",
+		"test:demo": "mocha --require ./test/demo/.setup.ts test/demo/*.spec.tsx",
+		"test": "mocha test/*.spec.tsx",
+		"test:all": "npm test && npm run test:demo",
+		"coverage": "nyc npm run test:all",
 		"coveralls": "nyc report --reporter=text-lcov | coveralls",
-		"demo:dev": "parcel -p 8080 watch src/demo/index.html",
-		"demo:build": "parcel build src/demo/index.html --public-url /react-gender-input/ --out-dir demo"
+		"demo:dev": "parcel -p 8080 watch demo/index.html",
+		"demo:build": "parcel build demo/index.html --public-url /react-gender-input/ --out-dir dist/demo"
 	},
 	"repository": {
 		"type": "git",

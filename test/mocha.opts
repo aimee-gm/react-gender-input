@@ -1,6 +1,4 @@
 --require ts-node/register
 --require source-map-support/register
 --require jsdom-global/register
---require ./test/mocha.setup.ts
---recursive ./**/*.spec.tsx
 --watch-extensions tsx

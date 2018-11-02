@@ -1,8 +1,10 @@
 import { expect } from 'chai';
-import { mount, ReactWrapper } from 'enzyme';
+import Enzyme, { mount, ReactWrapper } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
-import { GenderInput } from '../src/gender-input';
 import { SinonStub, stub } from 'sinon';
+
+import { GenderInput } from '../lib/gender-input';
 
 const choices = ['Male', 'Female', 'Non-binary', 'Other'];
 
@@ -13,6 +15,10 @@ describe('Gender component', () => {
 	let wrapper: ReactWrapper;
 	let labels: ReactWrapper;
 	let inputs: ReactWrapper;
+
+	before(() => {
+		Enzyme.configure({ adapter: new Adapter() });
+	});
 
 	describe('with default options', () => {
 		before(() => {
