@@ -8,7 +8,8 @@
 		"test:demo": "mocha --require ./test/demo/.setup.ts test/demo/*.spec.tsx",
 		"test": "mocha test/*.spec.tsx",
 		"test:all": "npm test && npm run test:demo",
-		"coverage": "nyc npm run test:all",
+		"coverage": "nyc npm test",
+		"coverage:all": "nyc npm run test:all",
 		"coveralls": "nyc report --reporter=text-lcov | coveralls",
 		"demo:dev": "parcel -p 8080 watch demo/index.html",
 		"demo:build": "parcel build demo/index.html --public-url /react-gender-input/ --out-dir dist/demo"

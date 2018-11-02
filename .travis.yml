@@ -2,6 +2,10 @@ language: node_js
 
 node_js: 'lts/*'
 
+cache:
+  directories:
+    - ~/.npm
+
 jobs:
   include:
     - name: 'node:8'
@@ -11,7 +15,7 @@ jobs:
       stage: test
       script:
         - npm run build
-        - npm test
+        - npm run coverage
       after_success:
         - npm run coveralls
     - name: 'node:latest'
