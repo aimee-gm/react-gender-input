@@ -41,24 +41,21 @@ describe('Demo: DemoApp component', () => {
 	describe('the component functionality', () => {
 		let wrapper: ReactWrapper;
 
-		const findByText = (str: string) => {
-			return wrapper.findWhere((el) => {
-				const text = el.text();
-
-				return Boolean(text && text.includes(str));
-			});
-		};
-
 		before(() => {
 			wrapper = mount(<DemoApp />);
 		});
 
 		it('has a prefer not to say option', () => {
-			expect(findByText('Prefer not to say').exists()).to.equal(true);
+			expect(
+				wrapper
+					.find('label')
+					.last()
+					.text()
+			).to.equal('Prefer not to say');
 		});
 
 		it('has preferNotToSay={true} in the markup', () => {
-			expect(findByText('preferNotToSay={true}').exists()).to.equal(true);
+			expect(wrapper.find('#markup-panel').text()).to.include('preferNotToSay={true}');
 		});
 
 		it('has no required fields', () => {
@@ -66,7 +63,7 @@ describe('Demo: DemoApp component', () => {
 		});
 
 		it('has required={false} in the markup', () => {
-			expect(findByText('required={false}').exists()).to.equal(true);
+			expect(wrapper.find('#markup-panel').text()).to.include('required={false}');
 		});
 
 		describe('when the preferNotToSay prop toggle changed from true to false', () => {
@@ -79,11 +76,16 @@ describe('Demo: DemoApp component', () => {
 			});
 
 			it('hides the preferNotToSay option', () => {
-				expect(findByText('Prefer not to say').exists()).to.equal(false);
+				expect(
+					wrapper
+						.find('label')
+						.last()
+						.text()
+				).to.not.equal('Prefer not to say');
 			});
 
 			it('updates the markup to preferNotToSay={false}', () => {
-				expect(findByText('preferNotToSay={false}').exists()).to.equal(true);
+				expect(wrapper.find('#markup-panel').text()).to.include('preferNotToSay={false}');
 			});
 		});
 
@@ -97,7 +99,7 @@ describe('Demo: DemoApp component', () => {
 			});
 
 			it('updates the markup to required={true}', () => {
-				expect(findByText('required={true}').exists()).to.equal(true);
+				expect(wrapper.find('#markup-panel').text()).to.include('required={true}');
 			});
 		});
 
@@ -107,7 +109,7 @@ describe('Demo: DemoApp component', () => {
 			});
 
 			it('updates the JSON code block to include the new value', () => {
-				expect(findByText('"gender": "female"').exists()).to.equal(true);
+				expect(wrapper.find('#output-panel').text()).to.include('"gender": "female"');
 			});
 		});
 	});

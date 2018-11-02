@@ -48,15 +48,23 @@ export class DemoApp extends React.Component<{}, DemoState> {
 		return (
 			<div>
 				<h1>react-gender-input</h1>
-				<h2>Demo</h2>
-				<GenderInputDemo genderProps={this.genderProps} />
-				<h2>Markup</h2>
-				<CodeBlock language="jsx">{GenderInputDemo.markup(this.genderProps)}</CodeBlock>
-				<h2>Output</h2>
-				<CodeBlock language="json" code={this.demoState} />
-				<h2>Parameters</h2>
-				<PropToggle name="required" current={this.state.required} onClick={this.setParam} />
-				<PropToggle name="preferNotToSay" current={this.state.preferNotToSay} onClick={this.setParam} />
+				<div id="demo-panel">
+					<h2>Demo</h2>
+					<GenderInputDemo genderProps={this.genderProps} />
+				</div>
+				<div id="markup-panel">
+					<h2>Markup</h2>
+					<CodeBlock language="jsx">{GenderInputDemo.markup(this.genderProps)}</CodeBlock>
+				</div>
+				<div id="output-panel">
+					<h2>Output</h2>
+					<CodeBlock language="json" code={this.demoState} />
+				</div>
+				<div id="parameters">
+					<h2>Parameters</h2>
+					<PropToggle name="required" current={this.state.required} onClick={this.setParam} />
+					<PropToggle name="preferNotToSay" current={this.state.preferNotToSay} onClick={this.setParam} />
+				</div>
 			</div>
 		);
 	}
