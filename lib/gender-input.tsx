@@ -1,7 +1,7 @@
 import autobind from 'autobind-decorator';
 import React, { Component, ChangeEvent } from 'react';
 
-interface GenderInputProps {
+export interface GenderInputProps {
 	required?: boolean;
 	preferNotToSay?: boolean;
 	onUpdate: (value: string | null) => void;

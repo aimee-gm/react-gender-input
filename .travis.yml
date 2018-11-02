@@ -1,23 +1,37 @@
 language: node_js
 
-node_js: 'node'
+node_js: 'lts/*'
+
+cache:
+  directories:
+    - ~/.npm
 
 jobs:
   include:
+    - name: 'node:8'
+      node_js: '8'
+      stage: test
     - name: 'node:lts'
-      node_js: 'lts/*'
-    - name: 'node:latest'
+      stage: test
       script:
-        - npm test
-        - npm run demo:build
+        - npm run build
+        - npm run coverage
       after_success:
         - npm run coveralls
+    - name: 'node:latest'
+      node_js: 'node'
+      stage: test
+    - name: 'demo'
+      stage: demo
+      script:
+        - npm run demo:build
+        - npm run test:demo
       deploy:
         provider: pages
         skip-cleanup: true
         github-token: $GITHUB_TOKEN
         keep-history: true
-        local-dir: './demo'
+        local-dir: './dist/demo'
         on:
           branch: master
 

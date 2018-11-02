@@ -1,15 +1,13 @@
 {
 	"check-coverage": true,
-	"all": true,
-	"include": [
-		"src/**/*"
-	],
+	"cache": false,
 	"exclude": [
 		"**/*.spec.tsx",
-		"**/*.spec.ts"
+		"**/*.spec.ts",
+		"dist",
+		"coverage"
 	],
 	"extension": [
-		".ts",
 		".tsx"
 	],
 	"reporter": [
