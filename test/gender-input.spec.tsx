@@ -187,4 +187,81 @@ describe('Gender component', () => {
 			expect(updateStub.firstCall.args[0]).to.equal(null);
 		});
 	});
+
+	describe('selecting other', () => {
+		let updateStub: SinonStub;
+
+		context('fullList="select" (default)', () => {
+			before(() => {
+				updateStub = stub();
+				wrapper = mount(<GenderInput onUpdate={updateStub} />);
+				wrapper.find('input[value="other"]').simulate('change');
+			});
+
+			after(() => wrapper.setState({ value: undefined }));
+
+			it('should update the state value to "other"', () => {
+				expect(wrapper.state('value')).to.eql('other');
+			});
+
+			it('should mark the input as checked', () => {
+				expect(wrapper.find('input[value="other"]').prop('checked')).to.equal(true);
+			});
+
+			it('should call onUpdate() with the new value', () => {
+				expect(updateStub.callCount).to.equal(1);
+				expect(updateStub.firstCall.args[0]).to.equal('other');
+			});
+
+			describe('the releaved select element', () => {
+				it('should exist', () => {
+					expect(wrapper.find('select').exists()).to.equal(true);
+				});
+
+				it('should have a placeholder', () => {
+					expect(wrapper.find('option[value="other"]').text()).to.equal('Please choose an option');
+				});
+
+				it('should have extended gender options', () => {
+					expect(wrapper.find('select option[value="agender"]').text()).to.equal('Agender');
+				});
+
+				describe('the agender option is selected', () => {
+					before(() => {
+						updateStub.resetHistory();
+						wrapper.find('select').simulate('change', { target: { value: 'agender' } });
+					});
+
+					it('should update the state value when selected', () => {
+						expect(updateStub.callCount).to.equal(1);
+						expect(updateStub.firstCall.args[0]).to.equal('agender');
+					});
+
+					it('should still show the select box', () => {
+						expect(wrapper.find('select').exists()).to.equal(true);
+					});
+
+					it('should still have other as checked', () => {
+						expect(wrapper.find('input[value="other"]').prop('checked')).to.equal(true);
+					});
+
+					it('should mark the option as selected', () => {
+						expect(wrapper.find('select').prop('value')).to.equal('agender');
+					});
+				});
+			});
+		});
+
+		context('fullList=false', () => {
+			before(() => {
+				updateStub = stub();
+				wrapper = mount(<GenderInput fullList={false} onUpdate={updateStub} />);
+				wrapper.find('input[value="other"]').simulate('change');
+			});
+
+			it('should not show a select box', () => {
+				expect(wrapper.find('select').exists()).to.equal(false);
+			});
+		});
+	});
 });

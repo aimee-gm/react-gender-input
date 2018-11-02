@@ -4,6 +4,7 @@ import React, { Component, ChangeEvent } from 'react';
 export interface GenderInputProps {
 	required?: boolean;
 	preferNotToSay?: boolean;
+	fullList?: 'select' | false;
 	onUpdate: (value: string | null) => void;
 	name?: string;
 }
@@ -25,12 +26,14 @@ function optionMap(label: string) {
 }
 
 const simpleList: GenderOption[] = ['Male', 'Female', 'Non-binary', 'Other'].map(optionMap);
+const extendedList: GenderOption[] = ['Agender'].map(optionMap);
 
 export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 	static defaultProps: Partial<GenderInputProps> = {
 		required: false,
 		preferNotToSay: true,
 		name: 'gender-input',
+		fullList: 'select',
 	};
 
 	constructor(props: GenderInputProps) {
@@ -39,7 +42,7 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 	}
 
 	public render() {
-		return [simpleList.map(this.radioButton), this.preferNotToSay()];
+		return [simpleList.map(this.radioButton), this.select(), this.preferNotToSay()];
 	}
 
 	private key(name: string) {
@@ -58,15 +61,36 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 		return this.state.value === this.key(value);
 	}
 
+	@autobind
+	private option({ label, value }: GenderOption) {
+		return (
+			<option key={value} value={value}>
+				{label}
+			</option>
+		);
+	}
+
+	private select() {
+		if (this.props.fullList !== 'select' || !this.isSelected('other') || !this.state.value) {
+			return;
+		}
+
+		return (
+			<select key="full-select" name={this.props.name} value={this.state.value} onChange={this.handleChange}>
+				<option value="other">Please choose an option</option>
+				{extendedList.map(this.option)}
+			</select>
+		);
+	}
+
 	private set value(value: string) {
-		console.log(value);
 		this.setState({ value: value || null });
 		this.props.onUpdate(value || null);
 	}
 
 	@autobind
-	private handleChange(event: ChangeEvent<HTMLInputElement>) {
-		this.value = event.currentTarget.value;
+	private handleChange(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+		this.value = event.target.value;
 	}
 
 	@autobind

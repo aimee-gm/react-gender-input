@@ -21,12 +21,7 @@ export class GenderInputDemo extends React.Component<GenderInputDemoProps> {
 			<section>
 				<label id="gender-label">Gender: {this.optionalText}</label>
 				<div>
-					<GenderInput
-						name={this.props.genderProps.name}
-						onUpdate={this.props.genderProps.onUpdate}
-						required={this.props.genderProps.required}
-						preferNotToSay={this.props.genderProps.preferNotToSay}
-					/>
+					<GenderInput {...this.props.genderProps} />
 				</div>
 			</section>
 		);

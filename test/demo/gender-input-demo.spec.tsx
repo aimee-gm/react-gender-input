@@ -2,12 +2,14 @@ import { expect } from 'chai';
 import { shallow, ShallowWrapper } from 'enzyme';
 import React from 'react';
 import { GenderInputDemo } from '../../demo/assets/components/gender-input-demo';
+import { GenderInputProps } from '../../lib/gender-input';
 
 describe('Demo: GenderInputDemo component', () => {
-	const notRequiredProps = {
+	const notRequiredProps: Required<GenderInputProps> = {
 		name: 'gender-input-demo-name-442',
 		preferNotToSay: true,
 		onUpdate: () => {},
+		fullList: 'select',
 		required: false,
 	};
 
