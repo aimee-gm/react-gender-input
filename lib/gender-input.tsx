@@ -12,7 +12,19 @@ interface GenderInputState {
 	value: string | null | undefined;
 }
 
-const choices = ['Male', 'Female', 'Non-binary', 'Other'];
+interface GenderOption {
+	label: string;
+	value: string;
+}
+
+function optionMap(label: string) {
+	return {
+		label,
+		value: label.toLowerCase(),
+	};
+}
+
+const simpleList: GenderOption[] = ['Male', 'Female', 'Non-binary', 'Other'].map(optionMap);
 
 export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 	static defaultProps: Partial<GenderInputProps> = {
@@ -26,41 +38,70 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 		this.state = { value: undefined };
 	}
 
-	private get choices() {
-		if (this.props.preferNotToSay) {
-			return [...choices, 'Prefer not to say'];
-		}
-
-		return choices;
+	public render() {
+		return [simpleList.map(this.radioButton), this.preferNotToSay()];
 	}
 
-	public render() {
-		return this.choices.map(this.radioButton);
+	private key(name: string) {
+		return name.toLowerCase();
+	}
+
+	private isSelected(value: string) {
+		if (!this.state.value) {
+			return false;
+		}
+
+		if (value === 'other' && !simpleList.find((item) => item.value === this.state.value)) {
+			return true;
+		}
+
+		return this.state.value === this.key(value);
+	}
+
+	private set value(value: string) {
+		console.log(value);
+		this.setState({ value: value || null });
+		this.props.onUpdate(value || null);
 	}
 
 	@autobind
 	private handleChange(event: ChangeEvent<HTMLInputElement>) {
-		const value = event.currentTarget.value || null;
-		this.setState({ value });
-		this.props.onUpdate(value);
+		this.value = event.currentTarget.value;
 	}
 
 	@autobind
-	private radioButton(name: string) {
-		const key = name.toLowerCase();
-		const value = name === 'Prefer not to say' ? null : key;
-
+	private radioButton({ label, value }: GenderOption) {
 		return (
-			<label key={key}>
+			<label key={value}>
 				<input
 					name={this.props.name}
 					type="radio"
-					checked={this.state.value === value}
-					value={value || undefined}
+					checked={this.isSelected(value)}
+					value={value}
 					onChange={this.handleChange}
 					required={this.props.required}
 				/>
-				{name}
+				{label}
+			</label>
+		);
+	}
+
+	private preferNotToSay() {
+		if (!this.props.preferNotToSay) {
+			return;
+		}
+
+		return (
+			<label key="prefer-not-to-say">
+				<input
+					name={this.props.name}
+					type="radio"
+					checked={this.state.value === null}
+					value={undefined}
+					onChange={this.handleChange}
+					required={this.props.required}
+				/>
+				Prefer not to say
 			</label>
 		);
 	}
