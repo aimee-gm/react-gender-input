@@ -1,16 +1,16 @@
-import { expect } from 'chai';
+import { expect } from 'code';
 import { shallow, ShallowWrapper } from 'enzyme';
 import React from 'react';
 import { GenderInputDemo } from '../demo/assets/components/gender-input-demo';
-import { GenderInputProps } from '../lib/gender-input';
 
 describe('Demo: GenderInputDemo component', () => {
-	const notRequiredProps: Required<GenderInputProps> = {
+	const notRequiredProps = {
 		name: 'gender-input-demo-name-442',
 		preferNotToSay: true,
 		onUpdate: () => {},
-		otherReveal: 'select',
+		otherReveal: 'select' as 'select',
 		required: false,
+		value: 'other',
 	};
 
 	describe('the component', () => {
@@ -32,7 +32,7 @@ describe('Demo: GenderInputDemo component', () => {
 		});
 
 		it('should pass the props to  <GenderInput>', () => {
-			expect(wrapper.find('GenderInput').props()).to.deep.equal(notRequiredProps);
+			expect(wrapper.find('GenderInput').props()).to.equal(notRequiredProps);
 		});
 
 		context('with required=true', () => {
@@ -62,7 +62,7 @@ describe('Demo: GenderInputDemo component', () => {
 		});
 
 		it('should return a string', () => {
-			expect(result).to.be.a('string');
+			expect(result).to.be.a.string();
 		});
 
 		it('should return the correct markup', () => {
@@ -72,6 +72,7 @@ describe('Demo: GenderInputDemo component', () => {
 	onUpdate={(gender) => this.setState({ gender })}
 	otherReveal='select'
 	required={false}
+	value='other'
 />`);
 		});
 	});

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect } from 'code';
 import { ShallowWrapper, shallow, ReactWrapper, mount } from 'enzyme';
 import React from 'react';
 import { DemoApp } from '../demo/assets/components/demo-app';
@@ -22,26 +22,26 @@ describe('Demo: DemoApp component', () => {
 		it('has a JSON code block', () => {
 			const block = wrapper.find('CodeBlock[language="json"]');
 			expect(block.exists()).to.equal(true);
-			expect(block.prop('code')).to.deep.equal({ gender: undefined });
+			expect<Record<string, undefined>>(block.prop('code')).to.equal({ gender: undefined });
 		});
 
 		describe('Prop toggles', () => {
 			it('has required defaulting to false', () => {
 				const block = wrapper.find('PropToggle[name="required"]');
 				expect(block.exists()).to.equal(true);
-				expect(block.prop('current')).to.equal(false);
+				expect<boolean | string>(block.prop('current')).to.equal(false);
 			});
 
 			it('has preferNotToSay defaulting to true', () => {
 				const block = wrapper.find('PropToggle[name="preferNotToSay"]');
 				expect(block.exists()).to.equal(true);
-				expect(block.prop('current')).to.equal(true);
+				expect<boolean | string>(block.prop('current')).to.equal(true);
 			});
 
 			it("has otherReveal defaulting to 'select'", () => {
 				const block = wrapper.find('PropToggle[name="otherReveal"]');
 				expect(block.exists()).to.equal(true);
-				expect(block.prop('current')).to.equal('select');
+				expect<boolean | string>(block.prop('current')).to.equal('select');
 			});
 		});
 	});

@@ -27,7 +27,7 @@
 	},
 	"homepage": "https://github.com/ajgamble-milner/react-gender-input#readme",
 	"devDependencies": {
-		"@types/chai": "^4.1.7",
+		"@types/code": "^4.0.4",
 		"@types/enzyme-adapter-react-16": "^1.0.3",
 		"@types/mocha": "^5.2.5",
 		"@types/react": "^16.4.18",
@@ -36,7 +36,7 @@
 		"@types/sinon": "^5.0.5",
 		"@types/webpack": "^4.4.17",
 		"autobind-decorator": "^2.2.1",
-		"chai": "^4.1.2",
+		"code": "^5.2.3",
 		"enzyme": "^3.6.0",
 		"enzyme-adapter-react-16": "^1.5.0",
 		"husky": "^1.1.3",

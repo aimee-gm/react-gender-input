@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect } from 'code';
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { SinonStub, stub } from 'sinon';
@@ -38,12 +38,12 @@ describe('Gender component', () => {
 
 		it('should have the correct values', () => {
 			const values = inputs.map((option) => option.prop('value'));
-			expect(values).to.have.members(standardValues);
+			expect(values).to.only.include(standardValues);
 		});
 
 		it('should have the correct text', () => {
 			const texts = labels.map((option) => option.text());
-			expect(texts).to.have.members(standardLabels);
+			expect(texts).to.only.include(standardLabels);
 		});
 	});
 
@@ -65,12 +65,12 @@ describe('Gender component', () => {
 		});
 
 		it('should have four choices', () => {
-			expect(labels).to.have.lengthOf(4);
+			expect(labels).to.have.length(4);
 		});
 
 		it('has the correct labels', () => {
 			const texts = labels.map((option) => option.text());
-			expect(texts).to.have.members(standardLabels.slice(0, -1));
+			expect(texts).to.only.include(standardLabels.slice(0, -1));
 		});
 	});
 
@@ -119,7 +119,7 @@ describe('Gender component', () => {
 		});
 
 		it('should have "other" as checked', () => {
-			expect(wrapper.find('input[checked=true]').prop('value')).equal('other');
+			expect(wrapper.find('input[checked=true]').prop<string>('value')).equal('other');
 		});
 
 		it('should show a select box', () => {
@@ -139,7 +139,7 @@ describe('Gender component', () => {
 		});
 
 		it('should have multiple options in the select box', () => {
-			expect(wrapper.find('select option')).to.have.length.greaterThan(10);
+			expect(wrapper.find('select option').length).to.be.greaterThan(10);
 		});
 
 		it('should trigger onUpdate when "agender" is selected', () => {
@@ -177,7 +177,7 @@ describe('Gender component', () => {
 		});
 
 		it('should have "agender" selected', () => {
-			expect(wrapper.find('select').prop('value')).to.equal('agender');
+			expect(wrapper.find('select').prop<string>('value')).to.equal('agender');
 		});
 	});
 
