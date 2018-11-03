@@ -3,7 +3,6 @@
 _A better gender form option implemeted as a react component_
 
 [![Build Status](https://travis-ci.org/ajgamble-milner/react-gender-input.svg?branch=master)](https://travis-ci.org/ajgamble-milner/react-gender-input)
-[![Coverage Status](https://coveralls.io/repos/github/ajgamble-milner/react-gender-input/badge.svg?branch=master)](https://coveralls.io/github/ajgamble-milner/react-gender-input?branch=master)
 [![License](https://img.shields.io/github/license/ajgamble-milner/react-gender-input.svg)](/LICENSE)
 
 ## Demo

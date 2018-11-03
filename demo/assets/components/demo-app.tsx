@@ -10,6 +10,7 @@ interface DemoState {
 	gender: string | null | undefined;
 	preferNotToSay: boolean;
 	required: boolean;
+	fullList: 'select' | false;
 }
 
 export class DemoApp extends React.Component<{}, DemoState> {
@@ -19,6 +20,7 @@ export class DemoApp extends React.Component<{}, DemoState> {
 			gender: undefined,
 			required: false,
 			preferNotToSay: true,
+			fullList: 'select',
 		};
 	}
 
@@ -31,6 +33,7 @@ export class DemoApp extends React.Component<{}, DemoState> {
 			required: this.state.required,
 			preferNotToSay: this.state.preferNotToSay,
 			name: 'gender-input',
+			fullList: this.state.fullList,
 			onUpdate: (gender: string | null) => {
 				this.setState({
 					gender,

@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { stub, SinonStub } from 'sinon';
-import { PropToggle } from '../../demo/assets/components/prop-toggle';
+import { PropToggle } from '../demo/assets/components/prop-toggle';
 
 describe('Demo: ParamToggle component', () => {
 	let wrapper: ReactWrapper;

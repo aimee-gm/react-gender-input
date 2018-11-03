@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { ShallowWrapper, shallow, ReactWrapper, mount } from 'enzyme';
 import React from 'react';
-import { DemoApp } from '../../demo/assets/components/demo-app';
+import { DemoApp } from '../demo/assets/components/demo-app';
 
 describe('Demo: DemoApp component', () => {
 	describe('the component structure', () => {
