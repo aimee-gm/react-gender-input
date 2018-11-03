@@ -8,13 +8,10 @@ export interface GenderInputProps {
 	otherReveal?: 'select' | false;
 	onUpdate: (value: string | null) => void;
 	name?: string;
+	value?: string | null;
 }
 
-interface GenderInputState {
-	value: string | null | undefined;
-}
-
-export class GenderInput extends Component<GenderInputProps, GenderInputState> {
+export class GenderInput extends Component<GenderInputProps> {
 	private minimalOptions: GenderOption[];
 	private extendedOptions: GenderOption[];
 
@@ -54,15 +51,15 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 	}
 
 	private isSelected(value: string) {
-		if (!this.state.value) {
+		if (!this.props.value) {
 			return false;
 		}
 
-		if (value === 'other' && !this.minimalOptions.find((item) => item.value === this.state.value)) {
+		if (value === 'other' && this.extendedOptions.find((item) => item.value === this.props.value)) {
 			return true;
 		}
 
-		return this.state.value === this.key(value);
+		return this.props.value === this.key(value);
 	}
 
 	@autobind
@@ -75,26 +72,23 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 	}
 
 	private select() {
-		if (this.props.otherReveal !== 'select' || !this.isSelected('other') || !this.state.value) {
+		if (this.props.otherReveal !== 'select' || !this.isSelected('other') || !this.props.value) {
 			return;
 		}
 
+		const name = `${this.props.name}-other`;
+
 		return (
-			<select key="full-select" name={this.props.name} value={this.state.value} onChange={this.handleChange}>
+			<select key="full-select" name={name} value={this.props.value} onChange={this.handleChange}>
 				<option value="other">Please choose an option</option>
 				{this.extendedOptions.map(this.option)}
 			</select>
 		);
 	}
 
-	private set value(value: string) {
-		this.setState({ value: value || null });
-		this.props.onUpdate(value || null);
-	}
-
 	@autobind
 	private handleChange(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
-		this.value = event.target.value;
+		this.props.onUpdate(event.target.value);
 	}
 
 	@autobind
@@ -124,7 +118,7 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 				<input
 					name={this.props.name}
 					type="radio"
-					checked={this.state.value === null}
+					checked={this.props.value === null}
 					value={undefined}
 					onChange={this.handleChange}
 					required={this.props.required}

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect } from 'code';
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { stub, SinonStub } from 'sinon';
@@ -20,7 +20,7 @@ describe('Demo: ParamToggle component', () => {
 			});
 
 			it('has a true and a false button', () => {
-				expect(wrapper.find('button').map((el) => el.text())).to.deep.equal(['true', 'false']);
+				expect<string[]>(wrapper.find('button').map((el) => el.text())).to.equal(['true', 'false']);
 			});
 
 			it('has the false button as "selected"', () => {
@@ -35,7 +35,7 @@ describe('Demo: ParamToggle component', () => {
 				wrapper.find('#param-toggle-p189j-true').simulate('click');
 
 				expect(onClick.callCount).to.equal(1);
-				expect(onClick.firstCall.args).to.deep.equal(['p189j', true]);
+				expect(onClick.firstCall.args).to.equal(['p189j', true]);
 			});
 		});
 
@@ -57,7 +57,7 @@ describe('Demo: ParamToggle component', () => {
 				wrapper.find('#param-toggle-p189j-false').simulate('click');
 
 				expect(onClick.callCount).to.equal(1);
-				expect(onClick.firstCall.args).to.deep.equal(['p189j', false]);
+				expect(onClick.firstCall.args).to.equal(['p189j', false]);
 			});
 		});
 	});
@@ -80,7 +80,7 @@ describe('Demo: ParamToggle component', () => {
 			wrapper.find('#param-toggle-p189j-def').simulate('click');
 
 			expect(onClick.callCount).to.equal(1);
-			expect(onClick.firstCall.args).to.deep.equal(['p189j', 'def']);
+			expect(onClick.firstCall.args).to.equal(['p189j', 'def']);
 		});
 	});
 });

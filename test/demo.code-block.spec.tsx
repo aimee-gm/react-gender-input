@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect } from 'code';
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { CodeBlock } from '../demo/assets/components/code-block';
@@ -36,7 +36,7 @@ describe('Demo: CodeBlock component', () => {
 			});
 
 			it('should colour the code', () => {
-				expect(testSpan.prop('style')).to.eql({ color: '#f92672' });
+				expect<Record<string, string>>(testSpan.prop('style')).to.equal({ color: '#f92672' });
 			});
 		});
 
@@ -77,7 +77,7 @@ describe('Demo: CodeBlock component', () => {
 		});
 
 		it('should colour the code', () => {
-			expect(testSpan.prop('style')).to.eql({ color: '#f92672' });
+			expect<Record<string, string>>(testSpan.prop('style')).to.equal({ color: '#f92672' });
 		});
 	});
 });

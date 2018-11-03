@@ -34,6 +34,7 @@ export class DemoApp extends React.Component<{}, DemoState> {
 			preferNotToSay: this.state.preferNotToSay,
 			name: 'gender-input',
 			otherReveal: this.state.otherReveal,
+			value: this.state.gender,
 			onUpdate: (gender: string | null) => {
 				this.setState({
 					gender,

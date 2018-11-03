@@ -5,7 +5,7 @@ interface GenderInputDemoProps {
 	genderProps: GenderInputProps;
 }
 
-interface MarkupProps extends Required<GenderInputProps> {
+interface MarkupProps extends GenderInputProps {
 	[key: string]: any;
 }
 
