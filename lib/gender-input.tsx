@@ -1,5 +1,6 @@
 import autobind from 'autobind-decorator';
 import React, { Component, ChangeEvent } from 'react';
+import { GenderOptions, GenderOption } from './genders';
 
 export interface GenderInputProps {
 	required?: boolean;
@@ -12,21 +13,6 @@ export interface GenderInputProps {
 interface GenderInputState {
 	value: string | null | undefined;
 }
-
-interface GenderOption {
-	label: string;
-	value: string;
-}
-
-function optionMap(label: string) {
-	return {
-		label,
-		value: label.toLowerCase(),
-	};
-}
-
-const simpleList: GenderOption[] = ['Male', 'Female', 'Non-binary', 'Other'].map(optionMap);
-const extendedList: GenderOption[] = ['Agender'].map(optionMap);
 
 export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 	static defaultProps: Partial<GenderInputProps> = {
@@ -42,7 +28,7 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 	}
 
 	public render() {
-		return [simpleList.map(this.radioButton), this.select(), this.preferNotToSay()];
+		return [GenderOptions.simple.map(this.radioButton), this.select(), this.preferNotToSay()];
 	}
 
 	private key(name: string) {
@@ -54,7 +40,7 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 			return false;
 		}
 
-		if (value === 'other' && !simpleList.find((item) => item.value === this.state.value)) {
+		if (value === 'other' && !GenderOptions.simple.find((item) => item.value === this.state.value)) {
 			return true;
 		}
 
@@ -78,7 +64,7 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 		return (
 			<select key="full-select" name={this.props.name} value={this.state.value} onChange={this.handleChange}>
 				<option value="other">Please choose an option</option>
-				{extendedList.map(this.option)}
+				{GenderOptions.extended.map(this.option)}
 			</select>
 		);
 	}
