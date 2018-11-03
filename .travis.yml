@@ -8,9 +8,6 @@ cache:
 
 jobs:
   include:
-    - name: 'node:8'
-      node_js: '8'
-      stage: test
     - name: 'node:lts'
       stage: test
       script:
@@ -23,7 +20,6 @@ jobs:
       stage: demo
       script:
         - npm run demo:build
-        - npm run coverage
       deploy:
         provider: pages
         skip-cleanup: true
