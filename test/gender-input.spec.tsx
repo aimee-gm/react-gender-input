@@ -5,10 +5,8 @@ import { SinonStub, stub } from 'sinon';
 
 import { GenderInput } from '../lib/gender-input';
 
-const choices = ['Male', 'Female', 'Non-binary', 'Other'];
-
-const defaultText = [...choices, 'Prefer not to say'];
-const defaultValues = [...choices.map((val) => val.toLowerCase()), undefined];
+const standardLabels = ['Male', 'Female', 'Non-binary', 'Other/Non-binary other', 'Prefer not to say'];
+const standardValues = ['male', 'female', 'nonbinary', 'other', undefined];
 
 describe('Gender component', () => {
 	let wrapper: ReactWrapper;
@@ -43,11 +41,13 @@ describe('Gender component', () => {
 		});
 
 		it('should have the correct values', () => {
-			expect(inputs.map((option) => option.prop('value'))).to.eql(defaultValues);
+			const values = inputs.map((option) => option.prop('value'));
+			expect(values).to.have.members(standardValues);
 		});
 
 		it('should have the correct text', () => {
-			expect(labels.map((option) => option.text())).to.eql(defaultText);
+			const texts = labels.map((option) => option.text());
+			expect(texts).to.have.members(standardLabels);
 		});
 	});
 
@@ -75,7 +75,8 @@ describe('Gender component', () => {
 		});
 
 		it('have the correct labels', () => {
-			expect(labels.map((option) => option.text())).to.eql(choices);
+			const texts = labels.map((option) => option.text());
+			expect(texts).to.have.members(standardLabels.slice(0, -1));
 		});
 	});
 
@@ -94,50 +95,75 @@ describe('Gender component', () => {
 
 	describe('selecting the first option', () => {
 		let updateStub: SinonStub;
+		let newValue: string;
 
 		before(() => {
 			updateStub = stub();
 			wrapper = mount(<GenderInput onUpdate={updateStub} />);
+
 			wrapper
 				.find('input')
 				.first()
 				.simulate('change');
-			inputs = wrapper.find('input');
+
+			newValue = wrapper
+				.find('input')
+				.first()
+				.prop('value') as string;
 		});
 
 		after(() => wrapper.setState({ value: undefined }));
 
 		it('should update the state value', () => {
-			expect(wrapper.state('value')).to.eql(defaultValues[0]);
+			expect(wrapper.state('value')).to.eql(newValue);
 		});
 
 		it('should mark the input as checked', () => {
-			expect(inputs.first().prop('checked')).to.equal(true);
+			expect(
+				wrapper
+					.find('input')
+					.first()
+					.prop('checked')
+			).to.equal(true);
 		});
 
 		it('should call onUpdate() with the new value', () => {
 			expect(updateStub.callCount).to.equal(1);
-			expect(updateStub.firstCall.args[0]).to.equal(defaultValues[0]);
+			expect(updateStub.firstCall.args[0]).to.equal(newValue);
 		});
 	});
 
 	describe('selecting a second option', () => {
 		let updateStub: SinonStub;
+		let newValue: string;
+
 		before(() => {
 			updateStub = stub();
 			wrapper = mount(<GenderInput onUpdate={updateStub} />);
-			wrapper.setState({ value: defaultValues[0] });
+			wrapper.setState({
+				value: wrapper
+					.find('input')
+					.first()
+					.prop('value'),
+			});
+
 			wrapper
 				.find('input')
 				.at(1)
 				.simulate('change');
+
+			newValue = wrapper
+				.find('input')
+				.at(1)
+				.prop('value') as string;
+
 			inputs = wrapper.find('input');
 		});
 
 		after(() => wrapper.setState({ value: undefined }));
 
 		it('should update the state value', () => {
-			expect(wrapper.state('value')).to.eql(defaultValues[1]);
+			expect(wrapper.state('value')).to.eql(newValue);
 		});
 
 		it('should deselect the first option', () => {
@@ -150,7 +176,7 @@ describe('Gender component', () => {
 
 		it('should call onUpdate() with the new value', () => {
 			expect(updateStub.callCount).to.equal(1);
-			expect(updateStub.firstCall.args[0]).to.equal(defaultValues[1]);
+			expect(updateStub.firstCall.args[0]).to.equal(newValue);
 		});
 	});
 
@@ -186,7 +212,7 @@ describe('Gender component', () => {
 	describe('selecting other', () => {
 		let updateStub: SinonStub;
 
-		context('fullList="select" (default)', () => {
+		context('otherReveal="select" (default)', () => {
 			before(() => {
 				updateStub = stub();
 				wrapper = mount(<GenderInput onUpdate={updateStub} />);
@@ -247,11 +273,19 @@ describe('Gender component', () => {
 			});
 		});
 
-		context('fullList=false', () => {
+		context('otherReveal=false', () => {
+			let labels: ReactWrapper;
+
 			before(() => {
 				updateStub = stub();
-				wrapper = mount(<GenderInput fullList={false} onUpdate={updateStub} />);
+				wrapper = mount(<GenderInput otherReveal={false} onUpdate={updateStub} />);
 				wrapper.find('input[value="other"]').simulate('change');
+				labels = wrapper.find('label');
+			});
+
+			it('should have the correct text', () => {
+				const texts = labels.map((option) => option.text());
+				expect(texts).to.include('Other');
 			});
 
 			it('should not show a select box', () => {

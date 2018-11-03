@@ -9,7 +9,7 @@ describe('Demo: GenderInputDemo component', () => {
 		name: 'gender-input-demo-name-442',
 		preferNotToSay: true,
 		onUpdate: () => {},
-		fullList: 'select',
+		otherReveal: 'select',
 		required: false,
 	};
 
@@ -68,9 +68,10 @@ describe('Demo: GenderInputDemo component', () => {
 		it('should return the correct markup', () => {
 			expect(result).to.equal(`<GenderInput
 	name='gender-input-demo-name-442'
-	onUpdate={(gender) => this.setState({ gender })}
-	required={false}
 	preferNotToSay={true}
+	onUpdate={(gender) => this.setState({ gender })}
+	otherReveal='select'
+	required={false}
 />`);
 		});
 	});

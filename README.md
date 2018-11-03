@@ -18,6 +18,7 @@ View the component in action in [our interactive demo](https://ajgamble-milner.g
 ## Options
 
 - `name`: type: `string`, default: `gender-input`. Form name property used for the input
-- `required`: type `boolean`, default: `false`. Toggles `required="required" on form inputs
+- `required`: type `boolean`, default: `false`. Toggles `required="required" on form inputsVY
 - `preferNotToSay`: type `boolean`, default: `true`. Toggles an additional "Prefer not to say option"
+- `otherReveal`: type `'select' | false`, default: `select`. Defines form input that is revealed on selecting "Other"
 - `onUpdate`: type `function`. Method to call when the selected value changes. Called with one argument: the new value.

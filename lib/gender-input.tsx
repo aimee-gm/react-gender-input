@@ -5,7 +5,7 @@ import { GenderOptions, GenderOption } from './genders';
 export interface GenderInputProps {
 	required?: boolean;
 	preferNotToSay?: boolean;
-	fullList?: 'select' | false;
+	otherReveal?: 'select' | false;
 	onUpdate: (value: string | null) => void;
 	name?: string;
 }
@@ -15,20 +15,38 @@ interface GenderInputState {
 }
 
 export class GenderInput extends Component<GenderInputProps, GenderInputState> {
+	private minimalOptions: GenderOption[];
+	private extendedOptions: GenderOption[];
+
 	static defaultProps: Partial<GenderInputProps> = {
 		required: false,
 		preferNotToSay: true,
 		name: 'gender-input',
-		fullList: 'select',
+		otherReveal: 'select',
 	};
 
 	constructor(props: GenderInputProps) {
 		super(props);
 		this.state = { value: undefined };
+
+		this.minimalOptions = GenderOptions.filter((gender) => gender.minimal);
+		this.extendedOptions = GenderOptions.filter((gender) => !gender.minimal);
 	}
 
 	public render() {
-		return [GenderOptions.simple.map(this.radioButton), this.select(), this.preferNotToSay()];
+		return [
+			this.minimalOptions.map(this.radioButton),
+			this.radioButton(this.otherOption),
+			this.select(),
+			this.preferNotToSay(),
+		];
+	}
+
+	private get otherOption(): GenderOption {
+		return {
+			label: this.props.otherReveal === 'select' ? 'Other/Non-binary other' : 'Other',
+			value: 'other',
+		};
 	}
 
 	private key(name: string) {
@@ -40,7 +58,7 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 			return false;
 		}
 
-		if (value === 'other' && !GenderOptions.simple.find((item) => item.value === this.state.value)) {
+		if (value === 'other' && !this.minimalOptions.find((item) => item.value === this.state.value)) {
 			return true;
 		}
 
@@ -57,14 +75,14 @@ export class GenderInput extends Component<GenderInputProps, GenderInputState> {
 	}
 
 	private select() {
-		if (this.props.fullList !== 'select' || !this.isSelected('other') || !this.state.value) {
+		if (this.props.otherReveal !== 'select' || !this.isSelected('other') || !this.state.value) {
 			return;
 		}
 
 		return (
 			<select key="full-select" name={this.props.name} value={this.state.value} onChange={this.handleChange}>
 				<option value="other">Please choose an option</option>
-				{GenderOptions.extended.map(this.option)}
+				{this.extendedOptions.map(this.option)}
 			</select>
 		);
 	}

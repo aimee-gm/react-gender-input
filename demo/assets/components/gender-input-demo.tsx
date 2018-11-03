@@ -5,7 +5,9 @@ interface GenderInputDemoProps {
 	genderProps: GenderInputProps;
 }
 
-type MarkupProps = Required<GenderInputProps>;
+interface MarkupProps extends Required<GenderInputProps> {
+	[key: string]: any;
+}
 
 export class GenderInputDemo extends React.Component<GenderInputDemoProps> {
 	private get optionalText() {
@@ -28,11 +30,19 @@ export class GenderInputDemo extends React.Component<GenderInputDemoProps> {
 	}
 
 	static markup(props: MarkupProps) {
-		return `<GenderInput
-	name='${props.name}'
-	onUpdate={(gender) => this.setState({ gender })}
-	required={${props.required.toString()}}
-	preferNotToSay={${props.preferNotToSay.toString()}}
-/>`.trim();
+		const lines = ['<GenderInput'];
+
+		for (const name in props) {
+			if (name === 'onUpdate') {
+				lines.push('\tonUpdate={(gender) => this.setState({ gender })}');
+			} else if (typeof props[name] === 'string') {
+				lines.push(`\t${name}='${props[name]}'`);
+			} else {
+				lines.push(`\t${name}={${props[name]}}`);
+			}
+		}
+
+		lines.push('/>');
+		return lines.join('\n');
 	}
 }
