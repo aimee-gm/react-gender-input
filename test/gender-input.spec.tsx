@@ -28,16 +28,12 @@ describe('Gender component', () => {
 			expect(wrapper.find('label input[type="radio"]')).to.have.length(5);
 		});
 
-		it('should not be required', () => {
-			inputs.forEach((option) => {
-				expect(option.prop('required')).to.equal(false);
-			});
+		it('should all not be required', () => {
+			expect(wrapper.find('input[required=false]')).to.have.length(5);
 		});
 
-		it('should have name of "gender-input', () => {
-			inputs.forEach((option) => {
-				expect(option.prop('name')).to.equal('gender-input');
-			});
+		it('should all have name of "gender-input', () => {
+			expect(wrapper.find('input[name="gender-input"]')).to.have.length(5);
 		});
 
 		it('should have the correct values', () => {
@@ -58,9 +54,7 @@ describe('Gender component', () => {
 		});
 
 		it('all inputs should be marked required', () => {
-			inputs.forEach((option) => {
-				expect(option.prop('required')).to.equal(true);
-			});
+			expect(wrapper.find('input[required=true]')).to.have.length(5);
 		});
 	});
 
@@ -74,7 +68,7 @@ describe('Gender component', () => {
 			expect(labels).to.have.lengthOf(4);
 		});
 
-		it('have the correct labels', () => {
+		it('has the correct labels', () => {
 			const texts = labels.map((option) => option.text());
 			expect(texts).to.have.members(standardLabels.slice(0, -1));
 		});
@@ -87,13 +81,11 @@ describe('Gender component', () => {
 		});
 
 		it('should have name of "gender-input', () => {
-			inputs.forEach((option) => {
-				expect(option.prop('name')).to.equal('custom-name');
-			});
+			expect(wrapper.find('input[name="custom-name"]')).to.have.length(5);
 		});
 	});
 
-	describe('selecting the first option', () => {
+	describe('selecting a radio button', () => {
 		let updateStub: SinonStub;
 		let newValue: string;
 
@@ -112,185 +104,94 @@ describe('Gender component', () => {
 				.prop('value') as string;
 		});
 
-		after(() => wrapper.setState({ value: undefined }));
-
-		it('should update the state value', () => {
-			expect(wrapper.state('value')).to.eql(newValue);
-		});
-
-		it('should mark the input as checked', () => {
-			expect(
-				wrapper
-					.find('input')
-					.first()
-					.prop('checked')
-			).to.equal(true);
-		});
-
 		it('should call onUpdate() with the new value', () => {
 			expect(updateStub.callCount).to.equal(1);
 			expect(updateStub.firstCall.args[0]).to.equal(newValue);
 		});
 	});
 
-	describe('selecting a second option', () => {
-		let updateStub: SinonStub;
-		let newValue: string;
-
-		before(() => {
-			updateStub = stub();
-			wrapper = mount(<GenderInput onUpdate={updateStub} />);
-			wrapper.setState({
-				value: wrapper
-					.find('input')
-					.first()
-					.prop('value'),
-			});
-
-			wrapper
-				.find('input')
-				.at(1)
-				.simulate('change');
-
-			newValue = wrapper
-				.find('input')
-				.at(1)
-				.prop('value') as string;
-
-			inputs = wrapper.find('input');
-		});
-
-		after(() => wrapper.setState({ value: undefined }));
-
-		it('should update the state value', () => {
-			expect(wrapper.state('value')).to.eql(newValue);
-		});
-
-		it('should deselect the first option', () => {
-			expect(inputs.first().prop('checked')).to.equal(false);
-		});
-
-		it('should deselect the new option', () => {
-			expect(inputs.at(1).prop('checked')).to.equal(true);
-		});
-
-		it('should call onUpdate() with the new value', () => {
-			expect(updateStub.callCount).to.equal(1);
-			expect(updateStub.firstCall.args[0]).to.equal(newValue);
-		});
-	});
-
-	describe('selecting prefer not to say', () => {
+	describe('with value="other" and otherReveal="select"', () => {
 		let updateStub: SinonStub;
 
 		before(() => {
 			updateStub = stub();
-			wrapper = mount(<GenderInput onUpdate={updateStub} />);
-			wrapper
-				.find('input')
-				.last()
-				.simulate('change');
-			inputs = wrapper.find('input');
+			wrapper = mount(<GenderInput value="other" onUpdate={updateStub} />);
 		});
 
-		after(() => wrapper.setState({ value: undefined }));
-
-		it('should update the state value to null', () => {
-			expect(wrapper.state('value')).to.eql(null);
+		it('should have "other" as checked', () => {
+			expect(wrapper.find('input[checked=true]').prop('value')).equal('other');
 		});
 
-		it('should mark the input as checked', () => {
-			expect(inputs.last().prop('checked')).to.equal(true);
+		it('should show a select box', () => {
+			expect(wrapper.find('select')).to.have.length(1);
 		});
 
-		it('should call onUpdate() with the new value', () => {
+		it('has select box name="gender-input-other"', () => {
+			expect(wrapper.find('select').prop('name')).to.equal('gender-input-other');
+		});
+
+		it('should have a placeholder in the select box', () => {
+			expect(wrapper.find('option[value="other"]').text()).to.equal('Please choose an option');
+		});
+
+		it('should have extended gender options in the select box', () => {
+			expect(wrapper.find('select option[value="agender"]').text()).to.equal('Agender');
+		});
+
+		it('should have multiple options in the select box', () => {
+			expect(wrapper.find('select option')).to.have.length.greaterThan(10);
+		});
+
+		it('should trigger onUpdate when "agender" is selected', () => {
+			wrapper.find('select').simulate('change', { target: { value: 'agender' } });
 			expect(updateStub.callCount).to.equal(1);
-			expect(updateStub.firstCall.args[0]).to.equal(null);
+			expect(updateStub.firstCall.args[0]).to.equal('agender');
 		});
 	});
 
-	describe('selecting other', () => {
-		let updateStub: SinonStub;
-
-		context('otherReveal="select" (default)', () => {
-			before(() => {
-				updateStub = stub();
-				wrapper = mount(<GenderInput onUpdate={updateStub} />);
-				wrapper.find('input[value="other"]').simulate('change');
-			});
-
-			after(() => wrapper.setState({ value: undefined }));
-
-			it('should update the state value to "other"', () => {
-				expect(wrapper.state('value')).to.eql('other');
-			});
-
-			it('should mark the input as checked', () => {
-				expect(wrapper.find('input[value="other"]').prop('checked')).to.equal(true);
-			});
-
-			it('should call onUpdate() with the new value', () => {
-				expect(updateStub.callCount).to.equal(1);
-				expect(updateStub.firstCall.args[0]).to.equal('other');
-			});
-
-			describe('the releaved select element', () => {
-				it('should exist', () => {
-					expect(wrapper.find('select').exists()).to.equal(true);
-				});
-
-				it('should have a placeholder', () => {
-					expect(wrapper.find('option[value="other"]').text()).to.equal('Please choose an option');
-				});
-
-				it('should have extended gender options', () => {
-					expect(wrapper.find('select option[value="agender"]').text()).to.equal('Agender');
-				});
-
-				describe('the agender option is selected', () => {
-					before(() => {
-						updateStub.resetHistory();
-						wrapper.find('select').simulate('change', { target: { value: 'agender' } });
-					});
-
-					it('should update the state value when selected', () => {
-						expect(updateStub.callCount).to.equal(1);
-						expect(updateStub.firstCall.args[0]).to.equal('agender');
-					});
-
-					it('should still show the select box', () => {
-						expect(wrapper.find('select').exists()).to.equal(true);
-					});
-
-					it('should still have other as checked', () => {
-						expect(wrapper.find('input[value="other"]').prop('checked')).to.equal(true);
-					});
-
-					it('should mark the option as selected', () => {
-						expect(wrapper.find('select').prop('value')).to.equal('agender');
-					});
-				});
-			});
+	describe('otherReveal="select" and an unknown option for value', () => {
+		before(() => {
+			wrapper = mount(<GenderInput value="qwerty" />);
 		});
 
-		context('otherReveal=false', () => {
-			let labels: ReactWrapper;
+		it('should not have any options checked', () => {
+			expect(wrapper.find('input[checked=true]')).to.have.length(0);
+		});
 
-			before(() => {
-				updateStub = stub();
-				wrapper = mount(<GenderInput otherReveal={false} onUpdate={updateStub} />);
-				wrapper.find('input[value="other"]').simulate('change');
-				labels = wrapper.find('label');
-			});
+		it('should not show a select box', () => {
+			expect(wrapper.find('select').exists()).to.equal(false);
+		});
+	});
 
-			it('should have the correct text', () => {
-				const texts = labels.map((option) => option.text());
-				expect(texts).to.include('Other');
-			});
+	describe('with value="agender" and otherReveal="select"', () => {
+		before(() => {
+			wrapper = mount(<GenderInput value="agender" />);
+		});
 
-			it('should not show a select box', () => {
-				expect(wrapper.find('select').exists()).to.equal(false);
-			});
+		it('should have "other" as checked', () => {
+			expect(wrapper.find('input[value="other"]').prop('checked')).to.equal(true);
+		});
+
+		it('should show a select box', () => {
+			expect(wrapper.find('select').exists()).to.equal(true);
+		});
+
+		it('should have "agender" selected', () => {
+			expect(wrapper.find('select').prop('value')).to.equal('agender');
+		});
+	});
+
+	describe('with value="other" and otherReveal=false', () => {
+		before(() => {
+			wrapper = mount(<GenderInput value="other" otherReveal={false} />);
+		});
+
+		it('should have "other" as checked', () => {
+			expect(wrapper.find('input[value="other"]').prop('checked')).to.equal(true);
+		});
+
+		it('should not show a select box', () => {
+			expect(wrapper.find('select').exists()).to.equal(false);
 		});
 	});
 });
