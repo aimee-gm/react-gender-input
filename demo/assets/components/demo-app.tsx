@@ -30,11 +30,11 @@ export class DemoApp extends React.Component<{}, DemoState> {
 
 	private get genderProps() {
 		return {
+			name: 'gender-input',
+			value: this.state.gender,
 			required: this.state.required,
 			preferNotToSay: this.state.preferNotToSay,
-			name: 'gender-input',
 			otherReveal: this.state.otherReveal,
-			value: this.state.gender,
 			onUpdate: (gender: string | null) => {
 				this.setState({
 					gender,
