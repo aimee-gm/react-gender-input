@@ -12,12 +12,13 @@ View the component in action in [our interactive demo](https://ajgamble-milner.g
 ## Usage
 
 ```html
-<GenderInput name='my-gender-field-name' onUpdate={(val) => {}} />
+<GenderInput name='my-gender-field-name' onUpdate={(val) => {...}} value={user.gender} />
 ```
 
 ## Options
 
 - `name`: type: `string`, default: `gender-input`. Form name property used for the input
+- `value`: type: `string`. Selected gender value
 - `required`: type `boolean`, default: `false`. Toggles `required="required" on form inputsVY
 - `preferNotToSay`: type `boolean`, default: `true`. Toggles an additional "Prefer not to say option"
 - `otherReveal`: type `'select' | false`, default: `select`. Defines form input that is revealed on selecting "Other"
