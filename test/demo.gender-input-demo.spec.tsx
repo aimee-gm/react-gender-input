@@ -1,13 +1,15 @@
 import { expect } from 'chai';
 import { shallow, ShallowWrapper } from 'enzyme';
 import React from 'react';
-import { GenderInputDemo } from '../../demo/assets/components/gender-input-demo';
+import { GenderInputDemo } from '../demo/assets/components/gender-input-demo';
+import { GenderInputProps } from '../lib/gender-input';
 
 describe('Demo: GenderInputDemo component', () => {
-	const notRequiredProps = {
+	const notRequiredProps: Required<GenderInputProps> = {
 		name: 'gender-input-demo-name-442',
 		preferNotToSay: true,
 		onUpdate: () => {},
+		otherReveal: 'select',
 		required: false,
 	};
 
@@ -66,9 +68,10 @@ describe('Demo: GenderInputDemo component', () => {
 		it('should return the correct markup', () => {
 			expect(result).to.equal(`<GenderInput
 	name='gender-input-demo-name-442'
-	onUpdate={(gender) => this.setState({ gender })}
-	required={false}
 	preferNotToSay={true}
+	onUpdate={(gender) => this.setState({ gender })}
+	otherReveal='select'
+	required={false}
 />`);
 		});
 	});

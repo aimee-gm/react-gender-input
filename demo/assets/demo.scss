@@ -43,6 +43,24 @@ button {
 	}
 }
 
+#demo-panel {
+	label {
+		padding-left: 1.5em;
+		position: relative;
+
+		input {
+			position: absolute;
+			left: 0;
+		}
+	}
+
+	select {
+		font-size: 0.75em;
+		margin: 0.25em;
+		margin-left: 2em;
+	}
+}
+
 #gender-label {
 	margin-right: 1em;
 }

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
-import { CodeBlock } from '../../demo/assets/components/code-block';
+import { CodeBlock } from '../demo/assets/components/code-block';
 
 const json = `{
 	"key": "value"

@@ -1,19 +1,30 @@
 import React from 'react';
+import autobind from 'autobind-decorator';
 
 interface PropToggleProps {
 	name: string;
-	current: boolean;
-	onClick(name: string, value: boolean): void;
+	current: string | boolean;
+	options: (string | boolean)[];
+	onClick(name: string, value: string | boolean): void;
 }
 
 export class PropToggle extends React.Component<PropToggleProps> {
-	private buttonName(value: boolean) {
+	static defaultProps: Partial<PropToggleProps> = {
+		options: [true, false],
+	};
+
+	private buttonId(value: string | boolean) {
 		return `param-toggle-${this.props.name}-${value.toString()}`;
 	}
-	private button(value: boolean) {
+
+	@autobind
+	private button(value: string | boolean) {
+		const id = this.buttonId(value);
+
 		return (
 			<button
-				id={this.buttonName(value)}
+				key={id}
+				id={id}
 				className={this.props.current === value ? 'selected' : ''}
 				onClick={() => this.props.onClick(this.props.name, value)}>
 				{value.toString()}
@@ -24,8 +35,7 @@ export class PropToggle extends React.Component<PropToggleProps> {
 	render() {
 		return (
 			<div>
-				<span className="param">{this.props.name}</span>:{this.button(true)}
-				{this.button(false)}
+				<span className="param">{this.props.name}</span>:{this.props.options.map(this.button)}
 			</div>
 		);
 	}

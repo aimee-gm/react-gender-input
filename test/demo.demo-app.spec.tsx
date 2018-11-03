@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { ShallowWrapper, shallow, ReactWrapper, mount } from 'enzyme';
 import React from 'react';
-import { DemoApp } from '../../demo/assets/components/demo-app';
+import { DemoApp } from '../demo/assets/components/demo-app';
 
 describe('Demo: DemoApp component', () => {
 	describe('the component structure', () => {
@@ -25,16 +25,24 @@ describe('Demo: DemoApp component', () => {
 			expect(block.prop('code')).to.deep.equal({ gender: undefined });
 		});
 
-		it('has a required PropToggle defaulting to false', () => {
-			const block = wrapper.find('PropToggle[name="required"]');
-			expect(block.exists()).to.equal(true);
-			expect(block.prop('current')).to.equal(false);
-		});
+		describe('Prop toggles', () => {
+			it('has required defaulting to false', () => {
+				const block = wrapper.find('PropToggle[name="required"]');
+				expect(block.exists()).to.equal(true);
+				expect(block.prop('current')).to.equal(false);
+			});
 
-		it('has a preferNotToSay PropToggle defaulting to true', () => {
-			const block = wrapper.find('PropToggle[name="preferNotToSay"]');
-			expect(block.exists()).to.equal(true);
-			expect(block.prop('current')).to.equal(true);
+			it('has preferNotToSay defaulting to true', () => {
+				const block = wrapper.find('PropToggle[name="preferNotToSay"]');
+				expect(block.exists()).to.equal(true);
+				expect(block.prop('current')).to.equal(true);
+			});
+
+			it("has otherReveal defaulting to 'select'", () => {
+				const block = wrapper.find('PropToggle[name="otherReveal"]');
+				expect(block.exists()).to.equal(true);
+				expect(block.prop('current')).to.equal('select');
+			});
 		});
 	});
 
@@ -64,6 +72,10 @@ describe('Demo: DemoApp component', () => {
 
 		it('has required={false} in the markup', () => {
 			expect(wrapper.find('#markup-panel').text()).to.include('required={false}');
+		});
+
+		it("has otherReveal='select' in the markup", () => {
+			expect(wrapper.find('#markup-panel').text()).to.include("otherReveal='select'");
 		});
 
 		describe('when the preferNotToSay prop toggle changed from true to false', () => {
@@ -100,6 +112,29 @@ describe('Demo: DemoApp component', () => {
 
 			it('updates the markup to required={true}', () => {
 				expect(wrapper.find('#markup-panel').text()).to.include('required={true}');
+			});
+		});
+
+		describe('when "other" is selected', () => {
+			before(() => wrapper.find('input[value="other"]').simulate('change'));
+
+			it('shows the select box', () => {
+				expect(wrapper.find('select').exists()).to.equal(true);
+			});
+		});
+
+		describe("when the otherReveal prop toggle changed from 'select' to false", () => {
+			before(() => {
+				before(() => wrapper.find('input[value="other"]').simulate('change'));
+				wrapper.find('#param-toggle-otherReveal-false').simulate('click');
+			});
+
+			it('removes the select box', () => {
+				expect(wrapper.find('select').exists()).to.equal(false);
+			});
+
+			it('updates the markup to otherReveal={false}', () => {
+				expect(wrapper.find('#markup-panel').text()).to.include('otherReveal={false}');
 			});
 		});
 

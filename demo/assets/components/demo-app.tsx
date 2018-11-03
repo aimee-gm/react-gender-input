@@ -10,6 +10,7 @@ interface DemoState {
 	gender: string | null | undefined;
 	preferNotToSay: boolean;
 	required: boolean;
+	otherReveal: 'select' | false;
 }
 
 export class DemoApp extends React.Component<{}, DemoState> {
@@ -19,6 +20,7 @@ export class DemoApp extends React.Component<{}, DemoState> {
 			gender: undefined,
 			required: false,
 			preferNotToSay: true,
+			otherReveal: 'select',
 		};
 	}
 
@@ -31,6 +33,7 @@ export class DemoApp extends React.Component<{}, DemoState> {
 			required: this.state.required,
 			preferNotToSay: this.state.preferNotToSay,
 			name: 'gender-input',
+			otherReveal: this.state.otherReveal,
 			onUpdate: (gender: string | null) => {
 				this.setState({
 					gender,
@@ -40,7 +43,7 @@ export class DemoApp extends React.Component<{}, DemoState> {
 	}
 
 	@autobind
-	private setParam(name: string, val: boolean) {
+	private setParam(name: string, val: string | boolean) {
 		this.setState({ [name]: val });
 	}
 
@@ -64,6 +67,12 @@ export class DemoApp extends React.Component<{}, DemoState> {
 					<h2>Parameters</h2>
 					<PropToggle name="required" current={this.state.required} onClick={this.setParam} />
 					<PropToggle name="preferNotToSay" current={this.state.preferNotToSay} onClick={this.setParam} />
+					<PropToggle
+						name="otherReveal"
+						current={this.state.otherReveal}
+						options={['select', false]}
+						onClick={this.setParam}
+					/>
 				</div>
 			</div>
 		);

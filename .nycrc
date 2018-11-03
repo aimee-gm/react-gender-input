@@ -2,13 +2,13 @@
 	"check-coverage": true,
 	"cache": false,
 	"exclude": [
-		"**/*.spec.tsx",
-		"**/*.spec.ts",
 		"dist",
-		"coverage"
+		"coverage",
+		"test"
 	],
 	"extension": [
-		".tsx"
+		".tsx",
+		".ts"
 	],
 	"reporter": [
 		"html",
