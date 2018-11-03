@@ -11,7 +11,25 @@ function optionMap(label: string) {
 }
 
 export const simple = ['Male', 'Female', 'Non-binary', 'Other'];
-export const extended = ['Agender'];
+export const extended = [
+	'Agender',
+	'Androgyne',
+	'Bigender',
+	'Demiboy',
+	'Demigender',
+	'Demigirl',
+	'Genderfluid',
+	'Genderflux',
+	'Genderqueer',
+	'Intergender',
+	'Polygender',
+	'Neutrois',
+	'Trans male',
+	'Trans female',
+	'Transfeminine',
+	'Transgender',
+	'Transmasculine',
+];
 
 export const Genders = simple.concat(extended);
 
