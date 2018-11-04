@@ -4,75 +4,139 @@ $codeFont: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 
 body {
 	font-family: 'Source Sans Pro', sans-serif;
+	padding: 0;
+	margin: 0;
 }
 
-section {
+header {
+	background: linear-gradient(#e66465, #9198e5);
+	color: #fff;
+	padding: 1.5em 0;
+
+	h1 {
+		font-weight: 400;
+		box-sizing: border-box;
+		padding: 0 0.25em;
+	}
+}
+
+h1,
+#demo-container {
+	max-width: 768px;
+	margin: 0 auto;
+}
+
+#demo-container {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 
+	section {
+		flex-grow: 1;
+		max-width: 100%;
+		padding: 0 0.5em;
+	}
+
+	header {
+		width: 100%;
+	}
+
+	h2 {
+		font-weight: 600;
+	}
+
+	.value {
+		font-size: 0.7em;
+		font-weight: normal;
+		float: right;
+		padding: 0.25em 0;
+		display: block;
+		white-space: nowrap;
+	}
+}
+
+section#demo-panel {
+	width: 100%;
+	margin: 0;
+
 	> div {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		clear: both;
+	}
+
+	#gender-label {
+		margin-right: 1em;
+		padding: 0.5em;
+
+		em {
+			opacity: 0.5;
+			display: block;
+			font-size: 0.8em;
+		}
+	}
+
+	#component-demo {
 		flex-grow: 1;
 		color: rgb(12, 45, 34);
-		background: rgb(248, 248, 248);
+		background: rgba(0, 0, 0, 0.008);
 		line-height: 1.5;
-		padding: 1em;
-		margin: 0.5em 0px;
+		padding: 0.5em;
 		border-radius: 0.3em;
-		box-shadow: 0 0 4px rgba(12, 45, 34, 0.25);
+		box-shadow: 0 0 4px rgba(12, 45, 34, 0.15);
 
 		label {
 			display: block;
+			padding-left: 1.5em;
+			position: relative;
+
+			input {
+				position: absolute;
+				left: 0;
+			}
+		}
+
+		select {
+			font-size: 0.75em;
+			margin: 0.25em;
+			margin-left: 2em;
 		}
 	}
 }
 
-label span {
-	display: block;
-	opacity: 0.5;
-}
+#parameters .prop-toggle {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-bottom: 0.25em;
 
-button {
-	border: none;
-	padding: 0.25em;
-	font-family: $codeFont;
+	.toggle {
+		text-align: right;
+		flex-grow: 1;
 
-	&.selected {
-		background: blue;
-		color: #fff;
-	}
-}
+		button {
+			border: none;
+			padding: 0.25em 0.5em;
+			font-family: $codeFont;
+			background: rgba(100, 100, 100, 0.05);
 
-#demo-panel {
-	label {
-		padding-left: 1.5em;
-		position: relative;
-
-		input {
-			position: absolute;
-			left: 0;
+			&.selected {
+				background: #e66465;
+				color: #fff;
+			}
 		}
 	}
-
-	select {
-		font-size: 0.75em;
-		margin: 0.25em;
-		margin-left: 2em;
-	}
 }
 
-#gender-label {
-	margin-right: 1em;
-}
-
-span.param {
+span.code {
 	font-family: $codeFont;
 	display: inline-block;
 	background: #eee;
-	padding: 0.25em 0.4em;
+	padding: 0.25em 0.5em;
 }
 
 code,
-span.param {
+.code {
 	font-size: 0.8em;
 }

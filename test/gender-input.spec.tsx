@@ -110,6 +110,35 @@ describe('Gender component', () => {
 		});
 	});
 
+	describe('selecting prefer not to say', () => {
+		let updateStub: SinonStub;
+
+		before(() => {
+			updateStub = stub();
+			wrapper = mount(<GenderInput onUpdate={updateStub} />);
+
+			wrapper
+				.find('input')
+				.last()
+				.simulate('change');
+		});
+
+		it('should call onUpdate() with value=null', () => {
+			expect(updateStub.callCount).to.equal(1);
+			expect(updateStub.firstCall.args[0]).to.equal(null);
+		});
+	});
+
+	describe('with value={null}', () => {
+		before(() => {
+			wrapper = mount(<GenderInput value={null} />);
+		});
+
+		it('should have "Prefer not to say" as checked', () => {
+			expect(wrapper.find('input[checked=true]').prop<undefined>('value')).to.be.undefined();
+		});
+	});
+
 	describe('with value="other" and otherReveal="select"', () => {
 		let updateStub: SinonStub;
 

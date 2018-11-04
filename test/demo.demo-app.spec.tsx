@@ -16,13 +16,7 @@ describe('Demo: DemoApp component', () => {
 		});
 
 		it('has a JSX code block', () => {
-			expect(wrapper.find('CodeBlock[language="jsx"]').exists()).to.equal(true);
-		});
-
-		it('has a JSON code block', () => {
-			const block = wrapper.find('CodeBlock[language="json"]');
-			expect(block.exists()).to.equal(true);
-			expect<Record<string, undefined>>(block.prop('code')).to.equal({ gender: undefined });
+			expect(wrapper.find('CodeBlock').length).to.equal(1);
 		});
 
 		describe('Prop toggles', () => {
@@ -143,8 +137,8 @@ describe('Demo: DemoApp component', () => {
 				wrapper.find('[value="female"]').simulate('change');
 			});
 
-			it('updates the JSON code block to include the new value', () => {
-				expect(wrapper.find('#output-panel').text()).to.include('"gender": "female"');
+			it('updates the selected option to the new value', () => {
+				expect(wrapper.find('h2 aside').text()).to.include('Selected option: female');
 			});
 		});
 	});
