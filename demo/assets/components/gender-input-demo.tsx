@@ -12,7 +12,7 @@ interface MarkupProps extends GenderInputProps {
 export class GenderInputDemo extends React.Component<GenderInputDemoProps> {
 	private get optionalText() {
 		if (!this.props.genderProps.required) {
-			return <span>Optional</span>;
+			return <em>Optional</em>;
 		}
 
 		return void 0;
@@ -20,12 +20,12 @@ export class GenderInputDemo extends React.Component<GenderInputDemoProps> {
 
 	render() {
 		return (
-			<section>
+			<div>
 				<label id="gender-label">Gender: {this.optionalText}</label>
-				<div>
+				<div id="component-demo">
 					<GenderInput {...this.props.genderProps} />
 				</div>
-			</section>
+			</div>
 		);
 	}
 

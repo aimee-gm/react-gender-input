@@ -34,8 +34,9 @@ export class PropToggle extends React.Component<PropToggleProps> {
 
 	render() {
 		return (
-			<div>
-				<span className="param">{this.props.name}</span>:{this.props.options.map(this.button)}
+			<div className="prop-toggle">
+				<span className="code">{this.props.name}</span>
+				<span className="toggle">{this.props.options.map(this.button)}</span>
 			</div>
 		);
 	}

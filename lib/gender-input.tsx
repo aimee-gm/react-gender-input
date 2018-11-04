@@ -88,7 +88,7 @@ export class GenderInput extends Component<GenderInputProps> {
 
 	@autobind
 	private handleChange(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
-		this.props.onUpdate(event.target.value);
+		this.props.onUpdate(event.target.value || null);
 	}
 
 	@autobind

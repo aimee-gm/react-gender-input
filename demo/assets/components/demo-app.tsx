@@ -24,10 +24,6 @@ export class DemoApp extends React.Component<{}, DemoState> {
 		};
 	}
 
-	private get demoState() {
-		return { gender: this.state.gender };
-	}
-
 	private get genderProps() {
 		return {
 			name: 'gender-input',
@@ -49,22 +45,24 @@ export class DemoApp extends React.Component<{}, DemoState> {
 	}
 
 	render() {
+		const currentValue = this.state.gender || (this.state.gender === null ? 'null' : 'undefined');
+
 		return (
-			<div>
-				<h1>react-gender-input</h1>
-				<div id="demo-panel">
-					<h2>Demo</h2>
+			<div id="demo-container">
+				<section id="demo-panel">
+					<h2>
+						Demo
+						<div className="value">
+							Selected option: <span className="code">{currentValue}</span>
+						</div>
+					</h2>
 					<GenderInputDemo genderProps={this.genderProps} />
-				</div>
-				<div id="markup-panel">
+				</section>
+				<section id="markup-panel">
 					<h2>Markup</h2>
-					<CodeBlock language="jsx">{GenderInputDemo.markup(this.genderProps)}</CodeBlock>
-				</div>
-				<div id="output-panel">
-					<h2>Output</h2>
-					<CodeBlock language="json" code={this.demoState} />
-				</div>
-				<div id="parameters">
+					<CodeBlock>{GenderInputDemo.markup(this.genderProps)}</CodeBlock>
+				</section>
+				<section id="parameters">
 					<h2>Parameters</h2>
 					<PropToggle name="required" current={this.state.required} onClick={this.setParam} />
 					<PropToggle name="preferNotToSay" current={this.state.preferNotToSay} onClick={this.setParam} />
@@ -74,7 +72,7 @@ export class DemoApp extends React.Component<{}, DemoState> {
 						options={['select', false]}
 						onClick={this.setParam}
 					/>
-				</div>
+				</section>
 			</div>
 		);
 	}

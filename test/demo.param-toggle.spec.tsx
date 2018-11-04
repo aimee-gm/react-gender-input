@@ -16,7 +16,7 @@ describe('Demo: ParamToggle component', () => {
 			});
 
 			it('has a span with the property name in it', () => {
-				expect(wrapper.find('span').text()).equals('p189j');
+				expect(wrapper.find('span.code').text()).equals('p189j');
 			});
 
 			it('has a true and a false button', () => {
