@@ -4,7 +4,7 @@
 	"description": "A simple react gender component for better gender data collection",
 	"main": "index.js",
 	"scripts": {
-		"build": "tsc --noEmit",
+		"build": "tsc",
 		"test": "mocha test/gender-input.spec.tsx",
 		"coverage": "nyc mocha test/*.spec.tsx",
 		"demo:dev": "parcel -p 8080 watch demo/index.html",
