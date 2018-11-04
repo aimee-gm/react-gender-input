@@ -72,6 +72,10 @@ describe('Demo: DemoApp component', () => {
 			expect(wrapper.find('#markup-panel').text()).to.include("otherReveal='select'");
 		});
 
+		it('has an indication of the current gender value', () => {
+			expect(wrapper.find('h2 .value').text()).to.include('Selected option: undefined');
+		});
+
 		describe('when the preferNotToSay prop toggle changed from true to false', () => {
 			before(() => {
 				wrapper.find('#param-toggle-preferNotToSay-false').simulate('click');
@@ -138,7 +142,20 @@ describe('Demo: DemoApp component', () => {
 			});
 
 			it('updates the selected option to the new value', () => {
-				expect(wrapper.find('h2 aside').text()).to.include('Selected option: female');
+				expect(wrapper.find('h2 .value').text()).to.include('Selected option: female');
+			});
+		});
+
+		describe('selecting prefer not to say', () => {
+			before(() => {
+				wrapper
+					.find('input[type="radio"]')
+					.last()
+					.simulate('change');
+			});
+
+			it('updates the selected option to the new value', () => {
+				expect(wrapper.find('h2 .value').text()).to.include('Selected option: null');
 			});
 		});
 	});
