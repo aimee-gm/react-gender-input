@@ -69,7 +69,9 @@ describe('Demo: GenderInputDemo component', () => {
 			expect(result).to.equal(`<GenderInput
 	name='gender-input-demo-name-442'
 	preferNotToSay={true}
-	onUpdate={(gender) => this.setState({ gender })}
+	onUpdate={(gender) => {
+		this.setState({ gender });
+	}}
 	otherReveal='select'
 	required={false}
 	value='other'

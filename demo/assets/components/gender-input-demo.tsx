@@ -34,7 +34,7 @@ export class GenderInputDemo extends React.Component<GenderInputDemoProps> {
 
 		for (const name in props) {
 			if (name === 'onUpdate') {
-				lines.push('\tonUpdate={(gender) => this.setState({ gender })}');
+				lines.push('\tonUpdate={(gender) => {\n\t\tthis.setState({ gender });\n\t}}');
 			} else if (typeof props[name] === 'string') {
 				lines.push(`\t${name}='${props[name]}'`);
 			} else {
