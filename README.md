@@ -2,12 +2,12 @@
 
 _A better gender form option implemeted as a react component_
 
-[![Build Status](https://travis-ci.org/ajgamble-milner/react-gender-input.svg?branch=master)](https://travis-ci.org/ajgamble-milner/react-gender-input)
-[![License](https://img.shields.io/github/license/ajgamble-milner/react-gender-input.svg)](/LICENSE)
+[![Build Status](https://travis-ci.org/aimee-gm/react-gender-input.svg?branch=master)](https://travis-ci.org/aimee-gm/react-gender-input)
+[![License](https://img.shields.io/github/license/aimee-gm/react-gender-input.svg)](/LICENSE)
 
 ## Demo
 
-View the component in action in [our interactive demo](https://ajgamble-milner.github.io/react-gender-input/)
+View the component in action in [our interactive demo](https://aimee-gm.github.io/react-gender-input/)
 
 ## Usage
 
