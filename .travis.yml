@@ -12,12 +12,13 @@ jobs:
       stage: test
       script:
         - npm run build
+        - npm run demo:build
         - npm run coverage
     - name: 'node:latest'
       node_js: 'node'
       stage: test
     - name: 'demo'
-      stage: demo
+      stage: deploy
       script:
         - npm run demo:build
       deploy:
@@ -28,6 +29,17 @@ jobs:
         local-dir: './dist/demo'
         on:
           branch: master
+    - name: 'npm'
+      stage: deploy
+      script:
+        - npm run build
+      deploy:
+        provider: npm
+        skip-cleanup: true
+        email: $NPM_EMAIL
+        api_key: $NPM_APIKEY
+        on:
+          tags: true
 
 notifications:
   email: false
