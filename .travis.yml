@@ -6,6 +6,10 @@ cache:
   directories:
     - ~/.npm
 
+stages:
+  - name: deploy
+    if: (tag =~ ^v) AND (branch = master)
+
 jobs:
   include:
     - name: 'node:lts'
@@ -27,8 +31,6 @@ jobs:
         github-token: $GITHUB_TOKEN
         keep-history: true
         local-dir: './dist/demo'
-        on:
-          branch: master
     - name: 'npm'
       stage: deploy
       script:
@@ -38,8 +40,6 @@ jobs:
         skip-cleanup: true
         email: $NPM_EMAIL
         api_key: $NPM_APIKEY
-        on:
-          tags: true
 
 notifications:
   email: false
