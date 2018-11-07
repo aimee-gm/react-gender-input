@@ -1,6 +1,6 @@
 import autobind from 'autobind-decorator';
 import React, { Component, ChangeEvent } from 'react';
-import { GenderOptions, GenderOption } from './genders';
+import { genderOptions, GenderOption } from 'gender-options';
 
 export interface GenderInputProps {
 	required?: boolean;
@@ -12,9 +12,6 @@ export interface GenderInputProps {
 }
 
 export class GenderInput extends Component<GenderInputProps> {
-	private minimalOptions: GenderOption[];
-	private extendedOptions: GenderOption[];
-
 	static defaultProps: Partial<GenderInputProps> = {
 		required: false,
 		preferNotToSay: true,
@@ -25,21 +22,18 @@ export class GenderInput extends Component<GenderInputProps> {
 	constructor(props: GenderInputProps) {
 		super(props);
 		this.state = { value: undefined };
-
-		this.minimalOptions = GenderOptions.filter((gender) => gender.minimal);
-		this.extendedOptions = GenderOptions.filter((gender) => !gender.minimal);
 	}
 
 	public render() {
 		return [
-			this.minimalOptions.map(this.radioButton),
+			genderOptions.basic.map(this.radioButton),
 			this.radioButton(this.otherOption),
 			this.select(),
 			this.preferNotToSay(),
 		];
 	}
 
-	private get otherOption(): GenderOption {
+	private get otherOption() {
 		return {
 			label: this.props.otherReveal === 'select' ? 'Other/Non-binary other' : 'Other',
 			value: 'other',
@@ -55,7 +49,7 @@ export class GenderInput extends Component<GenderInputProps> {
 			return false;
 		}
 
-		if (value === 'other' && this.extendedOptions.find((item) => item.value === this.props.value)) {
+		if (value === 'other' && genderOptions.standard.find((item) => item.value === this.props.value)) {
 			return true;
 		}
 
@@ -81,7 +75,7 @@ export class GenderInput extends Component<GenderInputProps> {
 		return (
 			<select key="full-select" name={name} value={this.props.value} onChange={this.handleChange}>
 				<option value="other">Please choose an option</option>
-				{this.extendedOptions.map(this.option)}
+				{genderOptions.standard.map(this.option)}
 			</select>
 		);
 	}
