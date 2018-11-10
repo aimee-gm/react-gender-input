@@ -1,5 +1,5 @@
 import { expect } from 'code';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow, ReactWrapper, mount, ShallowWrapper } from 'enzyme';
 import React from 'react';
 import { GenderInputDemo } from '../demo/assets/components/gender-input-demo';
 
@@ -14,28 +14,26 @@ describe('Demo: GenderInputDemo component', () => {
 	};
 
 	describe('the component', () => {
-		let wrapper: ShallowWrapper;
+		let wrapper: ReactWrapper;
 
 		before(() => {
-			wrapper = shallow(<GenderInputDemo genderProps={notRequiredProps} />);
+			wrapper = mount(<GenderInputDemo genderProps={notRequiredProps} />);
 		});
 
 		it('should have a label with text "Gender: Optional"', () => {
-			const label = wrapper.find('label');
+			const label = wrapper.find('label').first();
 
 			expect(label.exists()).to.equal(true);
 			expect(label.text()).to.equal('Gender: Optional');
 		});
 
 		it('should contain a <GenderInput> component', () => {
-			expect(wrapper.find('GenderInput').exists()).to.equal(true);
-		});
-
-		it('should pass the props to  <GenderInput>', () => {
-			expect(wrapper.find('GenderInput').props()).to.equal(notRequiredProps);
+			expect(wrapper.find('input')).length(5);
 		});
 
 		context('with required=true', () => {
+			let wrapper: ShallowWrapper;
+
 			before(() => {
 				const props = {
 					required: true,
