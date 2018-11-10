@@ -208,6 +208,11 @@ describe('Gender component', () => {
 		it('should have "agender" selected', () => {
 			expect(wrapper.find('select').prop<string>('value')).to.equal('agender');
 		});
+
+		it('should not have the values male, female or nonbinary', () => {
+			const options = wrapper.find('option').map((el) => el.prop('value'));
+			expect(options).to.not.include(['male', 'female', 'nonbinary']);
+		});
 	});
 
 	describe('with value="other" and otherReveal=false', () => {

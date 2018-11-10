@@ -12,6 +12,7 @@ export interface GenderInputProps {
 }
 
 export class GenderInput extends Component<GenderInputProps> {
+	private selectOptions: GenderOption[] = [];
 	static defaultProps: Partial<GenderInputProps> = {
 		required: false,
 		preferNotToSay: true,
@@ -22,6 +23,11 @@ export class GenderInput extends Component<GenderInputProps> {
 	constructor(props: GenderInputProps) {
 		super(props);
 		this.state = { value: undefined };
+
+		this.selectOptions = [
+			{ label: 'Please choose an option', value: 'other' },
+			...genderOptions.standard.filter((val) => !genderOptions.basic.includes(val)),
+		];
 	}
 
 	public render() {
@@ -74,8 +80,7 @@ export class GenderInput extends Component<GenderInputProps> {
 
 		return (
 			<select key="full-select" name={name} value={this.props.value} onChange={this.handleChange}>
-				<option value="other">Please choose an option</option>
-				{genderOptions.standard.map(this.option)}
+				{this.selectOptions.map(this.option)}
 			</select>
 		);
 	}
