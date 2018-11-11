@@ -1,0 +1,11 @@
+node_modules
+.nyc_output
+coverage
+.vscode
+.cache
+lib
+.DS_Store
+.travis.yml
+.prettier*
+tsconfig.json
+.travis.yml
