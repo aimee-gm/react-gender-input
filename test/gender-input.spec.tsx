@@ -21,7 +21,7 @@ describe('Gender component', () => {
 
 	describe('with default options', () => {
 		before(() => {
-			wrapper = mount(<GenderInput />);
+			wrapper = mount(<GenderInput onUpdate={() => {}} />);
 			labels = wrapper.find('label');
 			inputs = wrapper.find('input');
 		});
@@ -55,7 +55,7 @@ describe('Gender component', () => {
 
 	describe('with required=true', () => {
 		before(() => {
-			wrapper = mount(<GenderInput required={true} />);
+			wrapper = mount(<GenderInput required={true} onUpdate={() => {}} />);
 			inputs = wrapper.find('input');
 		});
 
@@ -66,7 +66,7 @@ describe('Gender component', () => {
 
 	describe('with preferNotToSay=false', () => {
 		before(() => {
-			wrapper = mount(<GenderInput preferNotToSay={false} />);
+			wrapper = mount(<GenderInput preferNotToSay={false} onUpdate={() => {}} />);
 			labels = wrapper.find('label');
 		});
 
@@ -82,7 +82,7 @@ describe('Gender component', () => {
 
 	describe('with custom name defined (name="custom-name")', () => {
 		before(() => {
-			wrapper = mount(<GenderInput name="custom-name" />);
+			wrapper = mount(<GenderInput name="custom-name" onUpdate={() => {}} />);
 			inputs = wrapper.find('input');
 		});
 
@@ -137,7 +137,7 @@ describe('Gender component', () => {
 
 	describe('with value={null}', () => {
 		before(() => {
-			wrapper = mount(<GenderInput value={null} />);
+			wrapper = mount(<GenderInput value={null} onUpdate={() => {}} />);
 		});
 
 		it('should have "Prefer not to say" as checked', () => {
@@ -186,7 +186,7 @@ describe('Gender component', () => {
 
 	describe('otherReveal="select" and an unknown option for value', () => {
 		before(() => {
-			wrapper = mount(<GenderInput value="qwerty" />);
+			wrapper = mount(<GenderInput value="qwerty" onUpdate={() => {}} />);
 		});
 
 		it('should not have any options checked', () => {
@@ -200,7 +200,7 @@ describe('Gender component', () => {
 
 	describe('with value="agender" and otherReveal="select"', () => {
 		before(() => {
-			wrapper = mount(<GenderInput value="agender" />);
+			wrapper = mount(<GenderInput value="agender" onUpdate={() => {}} />);
 		});
 
 		it('should have "other" as checked', () => {
@@ -223,7 +223,7 @@ describe('Gender component', () => {
 
 	describe('with value="other" and otherReveal=false', () => {
 		before(() => {
-			wrapper = mount(<GenderInput value="other" otherReveal={false} />);
+			wrapper = mount(<GenderInput value="other" otherReveal={false} onUpdate={() => {}} />);
 		});
 
 		it('should have "other" as checked', () => {
