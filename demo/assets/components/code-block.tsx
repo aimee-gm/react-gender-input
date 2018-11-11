@@ -6,13 +6,9 @@ import { okaidia } from 'react-syntax-highlighter/styles/prism';
 
 registerLanguage('jsx', jsx);
 
-const customStyle = {
-	overflowX: 'scroll',
-};
-
 export const CodeBlock: StatelessComponent = function CodeBlock(props) {
 	return (
-		<SyntaxHighlighter style={okaidia} customStyle={customStyle} language="jsx">
+		<SyntaxHighlighter style={okaidia} customStyle={{ overflowX: 'scroll' }} language="jsx">
 			{props.children}
 		</SyntaxHighlighter>
 	);

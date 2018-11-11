@@ -26,11 +26,11 @@ export const GenderInput: StatelessComponent<GenderInputProps> = function Gender
 	const radioOptions = genderOptions.basic;
 	const selectOptions = [
 		{ label: 'Please choose an option', value: 'other' },
-		...genderOptions.standard.filter((val) => !genderOptions.basic.includes(val)),
+		...genderOptions.standard.filter((val) => !radioOptions.includes(val)),
 	];
 
 	const otherSelected = Boolean(
-		props.value === 'other' || selectOptions.find((item) => item.value === props.value)
+		props.value === 'other' || selectOptions.find(({ value }) => value === props.value)
 	);
 
 	const output = [

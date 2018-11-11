@@ -8,7 +8,7 @@
 		"build": "tsc",
 		"test": "mocha test/gender-input.spec.tsx",
 		"coverage": "nyc mocha test/*.spec.tsx",
-		"demo:dev": "parcel -p 8080 watch demo/index.html",
+		"demo:dev": "parcel -p 8080 watch demo/index.html --out-dir dist/demo",
 		"demo:build": "parcel build demo/index.html --public-url ./ --out-dir dist/demo"
 	},
 	"repository": {
