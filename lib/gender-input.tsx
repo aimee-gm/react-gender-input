@@ -10,7 +10,7 @@ export interface GenderInputProps {
 	value?: string | null;
 }
 
-export const GenderInput: StatelessComponent<GenderInputProps> = function(props) {
+export const GenderInput: StatelessComponent<GenderInputProps> = function GenderInput(props) {
 	props = {
 		required: false,
 		preferNotToSay: true,
@@ -29,7 +29,6 @@ export const GenderInput: StatelessComponent<GenderInputProps> = function(props)
 		...genderOptions.standard.filter((val) => !genderOptions.basic.includes(val)),
 	];
 
-	const otherLabel = props.otherReveal === 'select' ? 'Other/Non-binary other' : 'Other';
 	const otherSelected = Boolean(
 		props.value === 'other' || selectOptions.find((item) => item.value === props.value)
 	);
@@ -57,16 +56,16 @@ export const GenderInput: StatelessComponent<GenderInputProps> = function(props)
 				onChange={handleChange}
 				required={props.required}
 			/>
-			{otherLabel}
+			{props.otherReveal === 'select' ? 'Other/Non-binary other' : 'Other'}
 		</label>,
 	];
 
-	if (otherSelected && props.otherReveal === 'select') {
+	if (props.value && otherSelected && props.otherReveal === 'select') {
 		output.push(
 			<select
 				key="full-select"
 				name={`${props.name}-other`}
-				value={props.value || 'other'}
+				value={props.value}
 				onChange={handleChange}>
 				{selectOptions.map(({ label, value }) => (
 					<option key={value} value={value}>

@@ -2,6 +2,7 @@ import { expect } from 'code';
 import { shallow, ReactWrapper, mount, ShallowWrapper } from 'enzyme';
 import React from 'react';
 import { GenderInputDemo } from '../demo/assets/components/gender-input-demo';
+import { GenderInput } from '../lib/gender-input';
 
 describe('Demo: GenderInputDemo component', () => {
 	const notRequiredProps = {
@@ -28,7 +29,7 @@ describe('Demo: GenderInputDemo component', () => {
 		});
 
 		it('should contain a <GenderInput> component', () => {
-			expect(wrapper.find('input')).length(5);
+			expect(wrapper.find(GenderInput).exists()).to.equal(true);
 		});
 
 		context('with required=true', () => {

@@ -65,7 +65,11 @@ export class DemoApp extends React.Component<{}, DemoState> {
 				<section id="parameters">
 					<h2>Parameters</h2>
 					<PropToggle name="required" current={this.state.required} onClick={this.setParam} />
-					<PropToggle name="preferNotToSay" current={this.state.preferNotToSay} onClick={this.setParam} />
+					<PropToggle
+						name="preferNotToSay"
+						current={this.state.preferNotToSay}
+						onClick={this.setParam}
+					/>
 					<PropToggle
 						name="otherReveal"
 						current={this.state.otherReveal}
