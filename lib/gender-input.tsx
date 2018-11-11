@@ -1,4 +1,4 @@
-import React, { ChangeEvent, StatelessComponent } from 'react';
+import React, { ChangeEvent, StatelessComponent, Fragment } from 'react';
 import { genderOptions } from 'gender-options';
 
 export interface GenderInputProps {
@@ -92,5 +92,5 @@ export const GenderInput: StatelessComponent<GenderInputProps> = function Gender
 		);
 	}
 
-	return <div>{output}</div>;
+	return <Fragment>{output}</Fragment>;
 };
