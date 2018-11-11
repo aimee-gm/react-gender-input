@@ -8,7 +8,7 @@ describe('Demo: DemoApp component', () => {
 		let wrapper: ShallowWrapper;
 
 		before(() => {
-			wrapper = shallow(<DemoApp />);
+			wrapper = shallow(<DemoApp version="1.0.0" homepage="http://homepage.com" />);
 		});
 
 		it('has a GenderInputDemo', () => {
@@ -17,6 +17,14 @@ describe('Demo: DemoApp component', () => {
 
 		it('has a JSX code block', () => {
 			expect(wrapper.find('CodeBlock').length).to.equal(1);
+		});
+
+		it('has the version displayed', () => {
+			expect(wrapper.find('.version').text()).to.equal('v1.0.0');
+		});
+
+		it('has a link to the homepage', () => {
+			expect(wrapper.find('a[href="http://homepage.com"]').exists()).to.equal(true);
 		});
 
 		describe('Prop toggles', () => {
@@ -44,7 +52,7 @@ describe('Demo: DemoApp component', () => {
 		let wrapper: ReactWrapper;
 
 		before(() => {
-			wrapper = mount(<DemoApp />);
+			wrapper = mount(<DemoApp version="1.0.0" homepage="http://homepage.com" />);
 		});
 
 		it('has a prefer not to say option', () => {
