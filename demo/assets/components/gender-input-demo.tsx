@@ -30,7 +30,7 @@ export class GenderInputDemo extends React.Component<GenderInputDemoProps> {
 	}
 
 	static markup(props: MarkupProps) {
-		const lines = ['<GenderInput'];
+		const lines = [`import { GenderInput } from 'react-gender-input';`, '', '<GenderInput'];
 
 		for (const name in props) {
 			if (name === 'onUpdate') {

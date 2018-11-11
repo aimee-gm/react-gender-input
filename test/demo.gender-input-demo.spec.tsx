@@ -65,7 +65,9 @@ describe('Demo: GenderInputDemo component', () => {
 		});
 
 		it('should return the correct markup', () => {
-			expect(result).to.equal(`<GenderInput
+			expect(result).to.equal(`import { GenderInput } from 'react-gender-input';
+
+<GenderInput
 	name='gender-input-demo-name-442'
 	preferNotToSay={true}
 	onUpdate={(gender) => {

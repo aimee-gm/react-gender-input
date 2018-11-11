@@ -11,8 +11,14 @@ View the component in action in [our interactive demo](https://aimee-gm.github.i
 
 ## Usage
 
-```html
-<GenderInput name='my-gender-field-name' onUpdate={(val) => {...}} value={user.gender} />
+```jsx
+import { GenderInput } from 'react-gender-input';
+
+<GenderInput
+	name='my-gender-field-name'
+	onUpdate={(val) => {...}}
+	value={user.gender}
+/>
 ```
 
 ## Options
