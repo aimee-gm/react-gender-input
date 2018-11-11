@@ -1,6 +1,6 @@
 {
 	"name": "react-gender-input",
-	"version": "1.0.0-0",
+	"version": "1.0.0-1",
 	"description": "A simple react gender component for better gender data collection",
 	"main": "dist/index.js",
 	"scripts": {
