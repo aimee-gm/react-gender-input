@@ -5,7 +5,7 @@ export interface GenderInputProps {
 	required?: boolean;
 	preferNotToSay?: boolean;
 	otherReveal?: 'select' | false;
-	onUpdate: (value: string | null) => void;
+	onUpdate?: (value: string | null) => void;
 	name?: string;
 	value?: string | null;
 }
@@ -19,9 +19,11 @@ export const GenderInput: StatelessComponent<GenderInputProps> = function Gender
 		...props,
 	};
 
-	function handleChange(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
-		props.onUpdate(event.target.value || null);
-	}
+	const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+		if (props.onUpdate) {
+			props.onUpdate(event.target.value || null);
+		}
+	};
 
 	const radioOptions = genderOptions.basic;
 	const selectOptions = [

@@ -5,7 +5,13 @@ import { SinonStub, stub } from 'sinon';
 
 import { GenderInput } from '../lib/gender-input';
 
-const standardLabels = ['Male', 'Female', 'Non-binary', 'Other/Non-binary other', 'Prefer not to say'];
+const standardLabels = [
+	'Male',
+	'Female',
+	'Non-binary',
+	'Other/Non-binary other',
+	'Prefer not to say',
+];
 const standardValues = ['male', 'female', 'nonbinary', 'other', undefined];
 
 describe('Gender component', () => {
