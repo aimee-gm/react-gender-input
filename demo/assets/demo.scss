@@ -2,6 +2,8 @@
 
 $codeFont: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 
+$pageWidth: 768px;
+
 body {
 	font-family: 'Source Sans Pro', sans-serif;
 	padding: 0;
@@ -31,7 +33,7 @@ header {
 
 h1,
 #demo-container {
-	max-width: 768px;
+	max-width: $pageWidth;
 	margin: 0 auto;
 }
 
@@ -161,4 +163,18 @@ span.version {
 footer {
 	text-align: center;
 	width: 100%;
+}
+
+noscript {
+	display: block;
+	padding: 5em 0;
+	text-align: center;
+	max-width: $pageWidth - 250px;
+	margin: 0 auto;
+
+	h1 {
+		color: #e66465;
+		font-weight: 700;
+		margin-bottom: 2em;
+	}
 }
