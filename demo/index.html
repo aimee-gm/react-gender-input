@@ -7,7 +7,8 @@
 	<body>
 		<nav>
 			<ul>
-				<li class="version"><a href="{{ repo }}">{{ version }}</a></li>
+				<li class="version"><a href="{{ releases }}">{{ version }}</a></li>
+				<li class="repo"><a href="{{ npm }}">npm</a></li>
 				<li class="repo"><a href="{{ repo }}">GitHub</a></li>
 			</ul>
 		</nav>
@@ -23,6 +24,7 @@
 			<p>It looks like you have JavaScript disabled.</p>
 			<p>You need JavaScript to be enabled to view the demo; it's a JavaScript component!</p>
 		</noscript>
+		<footer>&copy; <a href="{{ authorUrl }}">{{ authorName }}</a> | {{ license }} Licensed</footer>
 		<script src="./assets/demo.tsx"></script>
 	</body>
 </html>
