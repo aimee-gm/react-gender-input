@@ -13,13 +13,8 @@ interface DemoState {
 	otherReveal: 'select' | false;
 }
 
-interface DemoProps {
-	version: string;
-	homepage: string;
-}
-
-export class DemoApp extends React.Component<DemoProps, DemoState> {
-	constructor(props: DemoProps) {
+export class DemoApp extends React.Component<{}, DemoState> {
+	constructor(props: {}) {
 		super(props);
 		this.state = {
 			gender: undefined,
@@ -57,7 +52,6 @@ export class DemoApp extends React.Component<DemoProps, DemoState> {
 				<section id="demo-panel">
 					<h2>
 						Demo
-						<span className="version">v{this.props.version}</span>
 						<div className="value">
 							Selected option: <span className="code">{currentValue}</span>
 						</div>
@@ -83,9 +77,6 @@ export class DemoApp extends React.Component<DemoProps, DemoState> {
 						onClick={this.setParam}
 					/>
 				</section>
-				<footer>
-					<a href={this.props.homepage}>Github</a>
-				</footer>
 			</div>
 		);
 	}

@@ -4,6 +4,34 @@ $codeFont: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 
 $pageWidth: 768px;
 
+nav {
+	background: #333;
+	color: #fff;
+
+	a {
+		color: #fff;
+	}
+
+	a:hover {
+		color: #e66465;
+	}
+
+	ul {
+		display: block;
+		text-align: right;
+
+		li {
+			list-style: none;
+			display: inline-block;
+
+			a {
+				display: block;
+				padding: 0.75em 1em;
+			}
+		}
+	}
+}
+
 body {
 	font-family: 'Source Sans Pro', sans-serif;
 	padding: 0;
@@ -32,7 +60,8 @@ header {
 }
 
 h1,
-#demo-container {
+#demo-container,
+nav ul {
 	max-width: $pageWidth;
 	margin: 0 auto;
 }
