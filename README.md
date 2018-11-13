@@ -10,6 +10,14 @@ _A better gender form option implemeted as a react component_
 
 View the component in action in [our interactive demo](https://aimee-gm.github.io/react-gender-input/)
 
+## Installation
+
+Use npm to install `react-gender-input`
+
+```
+npm install --save react-gender-input
+```
+
 ## Usage
 
 ```jsx
