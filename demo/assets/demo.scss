@@ -72,16 +72,16 @@ header {
 }
 
 footer {
-	opacity: 0.75;
-
-	&:hover {
-		opacity: 0.9;
-	}
-
 	margin-top: 2em;
 	padding: 2em 0;
-
 	background: #f4f4f4;
+	a {
+		opacity: 0.75;
+
+		&:hover {
+			opacity: 0.9;
+		}
+	}
 }
 
 header div,
