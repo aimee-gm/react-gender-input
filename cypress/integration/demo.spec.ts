@@ -1,7 +1,7 @@
 /// <reference types="cypress"/>
 
 before(() => {
-	cy.visit(`http://localhost:8080`);
+	cy.visit(`/`);
 });
 
 describe('The demo page', () => {

@@ -10,8 +10,8 @@
 		"coverage": "nyc mocha test/*.spec.tsx",
 		"demo:dev": "parcel -p 8080 watch demo/index.html",
 		"demo:build": "parcel build demo/index.html --public-url ./ --out-dir dist/demo",
-		"cypress:run": "parcel -p 8080 demo/index.html & cypress run",
-		"cypress:open": "parcel -p watch 8080 demo/index.html & cypress open"
+		"cypress:run": "npm run demo:build && node cypress.js",
+		"cypress:open": "cypress open"
 	},
 	"repository": {
 		"type": "git",
@@ -58,6 +58,7 @@
 		"react-dom": "^16.6.3",
 		"react-syntax-highlighter": "^9.0.1",
 		"sass": "^1.14.3",
+		"serve": "^10.1.1",
 		"sinon": "^7.1.1",
 		"source-map-support": "^0.5.9",
 		"source-sans-pro": "^2.40.0",
