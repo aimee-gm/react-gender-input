@@ -2,12 +2,21 @@
 
 _A better gender form option implemeted as a react component_
 
+[![NPM Version](https://img.shields.io/npm/v/react-gender-input.svg)](https://www.npmjs.com/package/react-gender-input)
 [![Build Status](https://travis-ci.org/aimee-gm/react-gender-input.svg?branch=master)](https://travis-ci.org/aimee-gm/react-gender-input)
 [![License](https://img.shields.io/github/license/aimee-gm/react-gender-input.svg)](/LICENSE)
 
 ## Demo
 
 View the component in action in [our interactive demo](https://aimee-gm.github.io/react-gender-input/)
+
+## Installation
+
+Use npm to install `react-gender-input`
+
+```
+npm install --save react-gender-input
+```
 
 ## Usage
 

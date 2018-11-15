@@ -1,16 +1,33 @@
 <html>
+	<head>
+		<title>{{ name }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
 
-<head>
-	<title>react-gender-input demo</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-	<header>
-		<h1>react-gender-input</h1>
-	</header>
-	<div id="demo"></div>
-	<script src="./assets/demo.tsx"></script>
-</body>
-
+	<body>
+		<nav>
+			<ul>
+				<li id="version"><a href="{{ releases }}">{{ version }}</a></li>
+				<li id="npm"><a href="{{ npm }}">npm</a></li>
+				<li id="repo"><a href="{{ repo }}">GitHub</a></li>
+			</ul>
+		</nav>
+		<header>
+			<div>
+				<h1>{{ name }}</h1>
+				<p>{{ description }}</p>
+			</div>
+		</header>
+		<div id="demo"></div>
+		<noscript>
+			<h1>JavaScript is disabled</h1>
+			<p>It looks like you have JavaScript disabled.</p>
+			<p>You need JavaScript to be enabled to view the demo; it's a JavaScript component!</p>
+		</noscript>
+		<footer>
+			&copy; <a href="{{ authorUrl }}">{{ authorName }}</a> |
+			<a href="{{ licenseUrl }}">{{ license }} Licensed</a>
+		</footer>
+		<script src="./assets/demo.tsx"></script>
+	</body>
 </html>

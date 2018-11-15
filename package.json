@@ -1,15 +1,17 @@
 {
 	"name": "react-gender-input",
 	"version": "1.0.0-1",
-	"description": "A simple react gender component for better gender data collection",
+	"description": "A simple react component for more inclusive gender data collection",
 	"main": "dist/index.js",
 	"scripts": {
-		"depcheck": "npm-check",
+		"depcheck": "npm-check --skip-unused",
 		"build": "tsc",
 		"test": "mocha test/gender-input.spec.tsx",
 		"coverage": "nyc mocha test/*.spec.tsx",
-		"demo:dev": "parcel -p 8080 watch demo/index.html --out-dir dist/demo",
-		"demo:build": "parcel build demo/index.html --public-url ./ --out-dir dist/demo"
+		"demo:dev": "parcel -p 8080 watch demo/index.html",
+		"demo:build": "parcel build demo/index.html --public-url ./ --out-dir dist/demo",
+		"cypress:run": "npm run demo:build && node cypress.js",
+		"cypress:open": "cypress open"
 	},
 	"repository": {
 		"type": "git",
@@ -26,44 +28,50 @@
 	"bugs": {
 		"url": "https://github.com/aimee-gm/react-gender-input/issues"
 	},
-	"homepage": "https://github.com/aimee-gm/react-gender-input#readme",
+	"homepage": "https://aimee-gm.github.io/react-gender-input/",
 	"devDependencies": {
+		"@cypress/webpack-preprocessor": "^4.0.2",
 		"@types/code": "^4.0.4",
 		"@types/enzyme-adapter-react-16": "^1.0.3",
 		"@types/mocha": "^5.2.5",
-		"@types/react": "^16.4.18",
+		"@types/react": "^16.7.4",
 		"@types/react-dom": "^16.0.9",
 		"@types/react-syntax-highlighter": "0.0.8",
 		"@types/sinon": "^5.0.5",
-		"@types/webpack": "^4.4.17",
+		"@types/webpack": "^4.4.19",
 		"autobind-decorator": "^2.2.1",
 		"code": "^5.2.3",
+		"cypress": "^3.1.1",
 		"enzyme": "^3.6.0",
-		"enzyme-adapter-react-16": "^1.5.0",
-		"husky": "^1.1.3",
+		"enzyme-adapter-react-16": "^1.7.0",
+		"husky": "^1.1.4",
 		"jsdom": "^13.0.0",
 		"jsdom-global": "^3.0.2",
 		"mocha": "^5.2.0",
 		"npm-check": "^5.9.0",
 		"nyc": "^13.1.0",
 		"parcel-bundler": "^1.10.3",
-		"prettier": "^1.15.1",
+		"posthtml-expressions": "^1.1.0",
+		"prettier": "^1.15.2",
 		"pretty-quick": "^1.8.0",
-		"react": "^16.6.1",
-		"react-dom": "^16.6.1",
+		"react": "^16.6.3",
+		"react-dom": "^16.6.3",
 		"react-syntax-highlighter": "^9.0.1",
 		"sass": "^1.14.3",
+		"serve": "^10.1.1",
 		"sinon": "^7.1.1",
 		"source-map-support": "^0.5.9",
 		"source-sans-pro": "^2.40.0",
+		"ts-loader": "^5.3.0",
 		"ts-node": "^7.0.1",
-		"typescript": "^3.1.6"
+		"typescript": "^3.1.6",
+		"webpack": "^4.25.1"
 	},
 	"peerDependencies": {
 		"react": "^16.5.1",
 		"react-dom": "^16.5.1"
 	},
 	"dependencies": {
-		"gender-options": "^1.0.0-3"
+		"gender-options": "^1.0.0-5"
 	}
 }

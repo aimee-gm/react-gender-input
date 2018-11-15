@@ -2,10 +2,49 @@
 
 $codeFont: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 
+$pageWidth: 768px;
+
+nav {
+	background: #333;
+	color: #fff;
+
+	a {
+		color: #fff;
+	}
+
+	a:hover {
+		color: #e66465;
+	}
+
+	ul {
+		display: block;
+		text-align: right;
+
+		li {
+			list-style: none;
+			display: inline-block;
+
+			a {
+				display: block;
+				padding: 0.75em 1em;
+			}
+		}
+	}
+}
+
 body {
 	font-family: 'Source Sans Pro', sans-serif;
 	padding: 0;
 	margin: 0;
+}
+
+a {
+	color: #666;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 header {
@@ -13,16 +52,42 @@ header {
 	color: #fff;
 	padding: 1.5em 0;
 
+	div {
+		padding: 0.5em;
+		box-sizing: border-box;
+	}
+
 	h1 {
 		font-weight: 400;
-		box-sizing: border-box;
-		padding: 0 0.25em;
+		padding: 0;
+		margin-top: 0;
+		margin-bottom: 0.75em;
+	}
+
+	p {
+		margin-bottom: 0;
+		font-style: italic;
+		opacity: 0.8;
 	}
 }
 
-h1,
-#demo-container {
-	max-width: 768px;
+footer {
+	margin-top: 2em;
+	padding: 2em 0;
+	background: #f4f4f4;
+	a {
+		opacity: 0.75;
+
+		&:hover {
+			opacity: 0.9;
+		}
+	}
+}
+
+header div,
+#demo-container,
+nav ul {
+	max-width: $pageWidth;
 	margin: 0 auto;
 }
 
@@ -129,7 +194,8 @@ section#demo-panel {
 	}
 }
 
-span.code {
+span.code,
+span.version {
 	font-family: $codeFont;
 	display: inline-block;
 	background: #eee;
@@ -139,4 +205,30 @@ span.code {
 code,
 .code {
 	font-size: 0.8em;
+}
+
+span.version {
+	font-size: 0.5em;
+	opacity: 0.5;
+	margin: 0.25em;
+	vertical-align: middle;
+}
+
+footer {
+	text-align: center;
+	width: 100%;
+}
+
+noscript {
+	display: block;
+	padding: 5em 0;
+	text-align: center;
+	max-width: $pageWidth - 250px;
+	margin: 0 auto;
+
+	h1 {
+		color: #e66465;
+		font-weight: 700;
+		margin-bottom: 2em;
+	}
 }

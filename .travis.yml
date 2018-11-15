@@ -19,6 +19,7 @@ jobs:
         - npm run build
         - npm run demo:build
         - npm run coverage
+        - npm run cypress:run
     - name: 'node:latest'
       node_js: 'node'
       stage: test
