@@ -10,7 +10,7 @@
 		"coverage": "nyc mocha test/*.spec.tsx",
 		"demo:dev": "parcel -p 8080 watch demo/index.html",
 		"demo:build": "parcel build demo/index.html --public-url ./ --out-dir dist/demo",
-		"cypress:run": "npm run demo:build && node cypress.js",
+		"cypress:run": "node cypress.js",
 		"cypress:open": "cypress open"
 	},
 	"repository": {
