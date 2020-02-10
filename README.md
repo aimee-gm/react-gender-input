@@ -12,11 +12,9 @@ View the component in action in [our interactive demo](https://aimee-gm.github.i
 
 ## Installation
 
-Use npm to install `react-gender-input`
+Use yarn or npm to install `react-gender-input`
 
-```
-npm install --save react-gender-input
-```
+`yarn add react-gender-input` or `npm install --save react-gender-input`
 
 ## Usage
 
