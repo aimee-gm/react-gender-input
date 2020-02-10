@@ -4,7 +4,6 @@
 	"description": "A simple react component for more inclusive gender data collection",
 	"main": "dist/index.js",
 	"scripts": {
-		"depcheck": "npm-check --skip-unused",
 		"build": "tsc",
 		"test": "mocha test/gender-input.spec.tsx",
 		"coverage": "nyc mocha test/*.spec.tsx",
@@ -48,7 +47,6 @@
 		"jsdom": "^14.0.0",
 		"jsdom-global": "^3.0.2",
 		"mocha": "^5.2.0",
-		"npm-check": "^5.9.0",
 		"nyc": "^13.3.0",
 		"parcel-bundler": "^1.12.3",
 		"posthtml-expressions": "^1.1.0",

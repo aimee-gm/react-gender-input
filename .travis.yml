@@ -7,10 +7,6 @@ addons:
     packages:
       - libgconf-2-4
 
-cache:
-  directories:
-    - ~/.npm
-
 stages:
   - name: test
   - name: deploy
@@ -21,17 +17,17 @@ jobs:
     - name: 'node:lts'
       stage: test
       script:
-        - npm run build
-        - npm run demo:build
-        - npm run coverage
-        - npm run cypress:run
+        - yarn build
+        - yarn demo:build
+        - yarn coverage
+        - yarn cypress:run
     - name: 'node:latest'
       node_js: 'node'
       stage: test
     - name: 'demo'
       stage: deploy
       script:
-        - npm run demo:build
+        - yarn demo:build
       deploy:
         provider: pages
         skip-cleanup: true
@@ -43,7 +39,7 @@ jobs:
     - name: 'npm'
       stage: deploy
       script:
-        - npm run build
+        - yarn build
       deploy:
         provider: npm
         cleanup: false
