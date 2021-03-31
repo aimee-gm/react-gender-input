@@ -22,9 +22,6 @@ jobs:
         - yarn demo:build
         - yarn coverage
         - yarn cypress:run
-    - name: 'node:latest'
-      node_js: 'node'
-      stage: test
     - name: 'demo'
       stage: deploy
       script:
