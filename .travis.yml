@@ -17,6 +17,7 @@ jobs:
     - name: 'node:lts'
       stage: test
       script:
+        - yarn cypress install
         - yarn build
         - yarn demo:build
         - yarn coverage

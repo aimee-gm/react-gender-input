@@ -3572,10 +3572,10 @@ functions-have-names@^1.2.0:
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.1.tgz#a981ac397fa0c9964551402cdc5533d7a4d52f91"
   integrity sha512-j48B/ZI7VKs3sgeI2cZp7WXWmZXu7Iq5pl5/vptV5N2mq+DGFuS/ulaDjtaoLpYzuD6u8UgrUKHfgo7fDTSiBA==
 
-gender-options@^1.0.0-5:
-  version "1.0.0-5"
-  resolved "https://registry.yarnpkg.com/gender-options/-/gender-options-1.0.0-5.tgz#019812cc8774ac93197591baa128d6b719a1a6a1"
-  integrity sha512-m2X94BTpQkrAcZ2NAZUxXomiR+ovW0Oxzg/w3Z6+oniKaPaYcs2YfDWcpuBT8MFykECnObw9EeSbFrdgQ9Qseg==
+gender-options@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gender-options/-/gender-options-1.0.0.tgz#49d70958f1a8ba52f9104223c835674c8beb3162"
+  integrity sha512-qYQpH+x9+WprmmwajQT+HLquNZHu/9VIUlkpaYGQm1eXGofKEQPBKI/nCTIm92MTpA/kznhcsPsDfmxlk/Kkqw==
 
 gensync@^1.0.0-beta.1:
   version "1.0.0-beta.1"
